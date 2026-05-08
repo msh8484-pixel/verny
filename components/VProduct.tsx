@@ -103,16 +103,32 @@ export default function VProduct() {
               <img
                 src="/socks-3color.png"
                 alt="VERNY 드레스 양말 3종"
-                style={{
-                  width: "100%", display: "block", transition: "filter 0.4s ease",
-                  filter: activeColor === 0 ? "none" : activeColor === 1 ? "saturate(0.1) brightness(0.65)" : "saturate(0.3) brightness(0.85) sepia(0.15)",
-                }}
+                style={{ width: "100%", display: "block" }}
               />
+              {/* 비선택 영역 어둡게 */}
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute", top: 0, bottom: 0,
+                    left: `${i * 33.33}%`, width: "33.34%",
+                    backgroundColor: "rgba(0,0,0,0.55)",
+                    opacity: activeColor === i ? 0 : 1,
+                    transition: "opacity 0.35s ease",
+                    pointerEvents: "none",
+                  }}
+                />
+              ))}
+              {/* 선택된 컬러 골드 하이라이트 테두리 */}
               <div
                 style={{
-                  position: "absolute", inset: 0,
-                  background: `radial-gradient(ellipse at 50% 30%, ${c.hex}20 0%, transparent 70%)`,
-                  mixBlendMode: "overlay", transition: "all 0.4s", pointerEvents: "none",
+                  position: "absolute", top: 0, bottom: 0,
+                  left: `${activeColor * 33.33}%`, width: "33.34%",
+                  border: "2px solid rgba(201,168,76,0.7)",
+                  boxShadow: "inset 0 0 20px rgba(201,168,76,0.12)",
+                  transition: "left 0.35s cubic-bezier(0.4,0,0.2,1)",
+                  pointerEvents: "none",
+                  borderRadius: 2,
                 }}
               />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "linear-gradient(to right, transparent, #C9A84C, transparent)" }} />
