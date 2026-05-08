@@ -1,36 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const VSockViewer = lazy(() => import("./VSockViewer"));
+
 const COLORS = [
-  { id: "navy", label: "다크네이비", ko: "목면 M9375", pantone: "PANTONE cool gray 11C", hex: "#1B2D4F" },
-  { id: "black", label: "블랙", ko: "목면 M6499", pantone: "PANTONE 2336C", hex: "#1a1a1a" },
-  { id: "charcoal", label: "차콜", ko: "목면 M9612", pantone: "PANTONE cool gray 11C", hex: "#5a5a5a" },
+  { id: "navy",     label: "다크네이비", ko: "목면 M9375",  pantone: "PANTONE cool gray 11C", hex: "#1B2D4F", img: "/sock-navy.png" },
+  { id: "black",    label: "블랙",       ko: "목면 M6499",  pantone: "PANTONE 2336C",         hex: "#1a1a1a", img: "/sock-black.png" },
+  { id: "charcoal", label: "차콜",       ko: "목면 M9612",  pantone: "PANTONE cool gray 11C", hex: "#5a5a5a", img: "/sock-charcoal.png" },
 ];
 
 export default function VProduct() {
   const [activeColor, setActiveColor] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-  const sockImgRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const floatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(sockImgRef.current,
-        { rotateY: 20, scale: 0.94, opacity: 0 },
-        { rotateY: 0, scale: 1, opacity: 1, duration: 1.2, ease: "power2.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true } }
-      );
       gsap.fromTo(textRef.current, { opacity: 0, x: 40 }, {
         opacity: 1, x: 0, duration: 1, ease: "power2.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 70%", once: true },
       });
-      gsap.to(floatRef.current, { y: -14, duration: 2.5, ease: "sine.inOut", repeat: -1, yoyo: true });
       gsap.fromTo(".spec-row", { opacity: 0, x: 16 }, {
         opacity: 1, x: 0, duration: 0.4, stagger: 0.06,
         scrollTrigger: { trigger: textRef.current, start: "top 80%", once: true },
@@ -46,7 +40,7 @@ export default function VProduct() {
       id="product"
       ref={sectionRef}
       className="section-pad"
-      style={{ backgroundColor: "#0f1e3a", padding: "80px 40px", overflow: "hidden", perspective: "1200px" }}
+      style={{ backgroundColor: "#0f1e3a", padding: "80px 40px", overflow: "hidden" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* 헤더 */}
@@ -60,15 +54,12 @@ export default function VProduct() {
 
         <div
           className="grid-2-col"
-          style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 60, alignItems: "center" }}
+          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}
         >
-          {/* 3D 이미지 */}
-          <div ref={sockImgRef} style={{ opacity: 0, transformStyle: "preserve-3d", perspective: "1000px" }}>
+          {/* 3D 뷰어 */}
+          <div>
             {/* 컬러 스와치 */}
-            <div
-              className="color-btns"
-              style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}
-            >
+            <div className="color-btns" style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}>
               {COLORS.map((col, i) => (
                 <button
                   key={col.id}
@@ -76,7 +67,8 @@ export default function VProduct() {
                   style={{
                     display: "flex", alignItems: "center", gap: 8, padding: "9px 14px",
                     border: i === activeColor ? "1px solid #C9A84C" : "1px solid rgba(255,255,255,0.12)",
-                    borderRadius: 2, background: i === activeColor ? "rgba(201,168,76,0.1)" : "transparent",
+                    borderRadius: 2,
+                    background: i === activeColor ? "rgba(201,168,76,0.1)" : "transparent",
                     cursor: "pointer", transition: "all 0.2s",
                   }}
                 >
@@ -88,53 +80,23 @@ export default function VProduct() {
               ))}
             </div>
 
-            {/* 이미지 카드 — 부유 */}
-            <div
-              ref={floatRef}
-              style={{
-                transformStyle: "preserve-3d",
-                borderRadius: 6,
-                overflow: "hidden",
-                boxShadow: "0 32px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.12)",
-                position: "relative",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/socks-3color.png"
-                alt="VERNY 드레스 양말 3종"
-                style={{ width: "100%", display: "block" }}
-              />
-              {/* 비선택 영역 어둡게 */}
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    position: "absolute", top: 0, bottom: 0,
-                    left: `${i * 33.33}%`, width: "33.34%",
-                    backgroundColor: "rgba(0,0,0,0.55)",
-                    opacity: activeColor === i ? 0 : 1,
-                    transition: "opacity 0.35s ease",
-                    pointerEvents: "none",
-                  }}
-                />
-              ))}
-              {/* 선택된 컬러 골드 하이라이트 테두리 */}
-              <div
-                style={{
-                  position: "absolute", top: 0, bottom: 0,
-                  left: `${activeColor * 33.33}%`, width: "33.34%",
-                  border: "2px solid rgba(201,168,76,0.7)",
-                  boxShadow: "inset 0 0 20px rgba(201,168,76,0.12)",
-                  transition: "left 0.35s cubic-bezier(0.4,0,0.2,1)",
-                  pointerEvents: "none",
-                  borderRadius: 2,
-                }}
-              />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "linear-gradient(to right, transparent, #C9A84C, transparent)" }} />
+            {/* 3D 캔버스 */}
+            <div style={{
+              borderRadius: 8,
+              overflow: "hidden",
+              boxShadow: "0 32px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.12)",
+              background: "radial-gradient(ellipse at 50% 40%, #1a2e50 0%, #060e1e 100%)",
+            }}>
+              <Suspense fallback={
+                <div style={{ width: "100%", aspectRatio: "3/4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: 28, height: 28, border: "2px solid rgba(201,168,76,0.3)", borderTop: "2px solid #C9A84C", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                </div>
+              }>
+                <VSockViewer imageSrc={c.img} />
+              </Suspense>
             </div>
 
-            {/* 팬톤 표시 */}
+            {/* 팬톤 */}
             <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 10, padding: "11px 14px", backgroundColor: "rgba(255,255,255,0.04)", borderRadius: 4, border: "1px solid rgba(255,255,255,0.07)" }}>
               <div style={{ width: 26, height: 26, backgroundColor: c.hex, borderRadius: 3, border: "1px solid rgba(255,255,255,0.15)", flexShrink: 0 }} />
               <div>
@@ -154,15 +116,15 @@ export default function VProduct() {
 
             <div style={{ display: "flex", flexDirection: "column" }}>
               {[
-                { label: "조직", value: "립 8:2 — 탄성·형태 유지 황금비율" },
-                { label: "소재", value: "면 70% · 나일론 25% · 폴리우레탄 5%" },
+                { label: "조직",    value: "립 8:2 — 탄성·형태 유지 황금비율" },
+                { label: "소재",    value: "면 70% · 나일론 25% · 폴리우레탄 5%" },
                 { label: "커프밴드", value: "라이크라 6cm — 흘러내림 없음" },
-                { label: "길이", value: "28cm (드레스 최적 길이)" },
-                { label: "사이즈", value: "갑종 기준 250~280mm (워싱 포함)" },
-                { label: "컬러", value: "다크네이비 · 블랙 · 차콜" },
-                { label: "커프", value: `Pantone ${c.pantone.replace("PANTONE ", "")}` },
-                { label: "제조국", value: "MADE IN KOREA" },
-                { label: "패키징", value: "네이비 박스 · 골드 포일 로고" },
+                { label: "길이",    value: "28cm (드레스 최적 길이)" },
+                { label: "사이즈",  value: "갑종 기준 250~280mm (워싱 포함)" },
+                { label: "컬러",    value: "다크네이비 · 블랙 · 차콜" },
+                { label: "커프",    value: `Pantone ${c.pantone.replace("PANTONE ", "")}` },
+                { label: "제조국",  value: "MADE IN KOREA" },
+                { label: "패키징",  value: "네이비 박스 · 골드 포일 로고" },
               ].map((spec) => (
                 <div key={spec.label} className="spec-row" style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "12px 0", opacity: 0 }}>
                   <span className="spec-label" style={{ width: 80, fontSize: 11, color: "#C9A84C", fontWeight: 700, letterSpacing: "0.04em", flexShrink: 0 }}>{spec.label}</span>
@@ -173,6 +135,8 @@ export default function VProduct() {
           </div>
         </div>
       </div>
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </section>
   );
 }
