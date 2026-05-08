@@ -6,9 +6,9 @@ import dynamic from "next/dynamic";
 const VSockViewer = dynamic(() => import("@/components/VSockViewer"), { ssr: false });
 
 const COLORS = [
-  { id: "navy",     label: "다크네이비", hex: "#1B2D4F", img: "/sock-navy.png" },
-  { id: "black",    label: "블랙",       hex: "#1a1a1a", img: "/sock-black.png" },
-  { id: "charcoal", label: "차콜",       hex: "#5a5a5a", img: "/sock-charcoal.png" },
+  { id: "navy",     label: "다크네이비", hex: "#1B2D4F", img: "/sock-navy.webp" },
+  { id: "black",    label: "블랙",       hex: "#1a1a1a", img: "/sock-black.webp" },
+  { id: "charcoal", label: "차콜",       hex: "#5a5a5a", img: "/sock-charcoal.webp" },
 ];
 
 export default function ViewerPage() {

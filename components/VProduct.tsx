@@ -103,7 +103,7 @@ export default function VProduct() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/socks-3color.png"
+                src="/socks-3color.webp"
                 alt="VERNY 드레스 양말 3종"
                 style={{ width: "100%", display: "block" }}
               />

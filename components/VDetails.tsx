@@ -10,12 +10,12 @@ const DETAILS = [
   {
     num: "01", title: "흘러내리지 않는 구조", en: "RIB 8:2 STRUCTURE",
     desc: "리브 8, 플레인 2의 황금비율. 착용 내내 발목 라인을 완벽히 유지합니다. 회의실부터 퇴근길까지 단 한 번도 올려 당기지 않아도 됩니다.",
-    img: "/sock-spec.png", imgPos: "top center",
+    img: "/sock-spec.webp", imgPos: "top center",
   },
   {
     num: "02", title: "6cm 라이크라 커프밴드", en: "LYCRA CUFF BAND",
     desc: "라이크라 혼방 소재의 6cm 커프밴드. 적절한 압박으로 밀착하되 혈액순환을 방해하지 않습니다. 면 70%의 천연 감촉과 함께 8시간 이상 제자리를 지킵니다.",
-    img: "/socks-3color.png", imgPos: "center 20%",
+    img: "/socks-3color.webp", imgPos: "center 20%",
   },
   {
     num: "03", title: "선물이 되는 패키징", en: "PREMIUM PACKAGING",
@@ -67,6 +67,8 @@ export default function VDetails() {
                 <img
                   src={d.img}
                   alt={d.title}
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: d.imgPos, display: "block", transition: "transform 0.5s ease" }}
                   onMouseOver={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)"; }}
                   onMouseOut={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }}

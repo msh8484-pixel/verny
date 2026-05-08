@@ -65,6 +65,8 @@ export default function VValues() {
             <img
               src="/box-stack.jpg"
               alt="VERNY 패키징"
+              loading="lazy"
+              decoding="async"
               style={{ width: "100%", borderRadius: 6, boxShadow: "0 20px 50px rgba(0,0,0,0.4)", display: "block" }}
             />
           </div>
@@ -76,9 +78,9 @@ export default function VValues() {
           className="grid-3-col"
         >
           {[
-            { img: "/product-label.png", title: "국내 봉제 생산", desc: "국내 검증된 봉제 공장, MADE IN KOREA. 소재 구성을 라벨에 정직하게 표기합니다." },
-            { img: "/shopping-bag.png", title: "정직한 사이즈", desc: "갑종 기준 250~280mm, 워싱 수축까지 적용된 실착용 사이즈입니다." },
-            { img: "/gift-set.png", title: "패키징도 제품입니다", desc: "네이비 박스와 골드 포일 로고. 선물용으로도 완벽한 VERNY 경험." },
+            { img: "/product-label.webp", title: "국내 봉제 생산", desc: "국내 검증된 봉제 공장, MADE IN KOREA. 소재 구성을 라벨에 정직하게 표기합니다." },
+            { img: "/shopping-bag.webp", title: "정직한 사이즈", desc: "갑종 기준 250~280mm, 워싱 수축까지 적용된 실착용 사이즈입니다." },
+            { img: "/gift-set.webp", title: "패키징도 제품입니다", desc: "네이비 박스와 골드 포일 로고. 선물용으로도 완벽한 VERNY 경험." },
           ].map((v, i) => (
             <div
               key={v.title}
@@ -91,6 +93,8 @@ export default function VValues() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={v.img} alt={v.title}
+                loading="lazy"
+                decoding="async"
                 style={{ width: "100%", height: 140, objectFit: "cover", borderRadius: 4, marginBottom: 20, opacity: 0.85 }}
               />
               <h4 style={{ fontFamily: "var(--font-serif)", fontSize: 20, fontWeight: 500, color: "#ffffff", marginBottom: 10 }}>{v.title}</h4>

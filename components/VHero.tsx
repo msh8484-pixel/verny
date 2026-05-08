@@ -38,9 +38,11 @@ export default function VHero() {
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #0a1528 45%, rgba(10,21,40,0.75) 70%, rgba(10,21,40,0.4) 100%)", zIndex: 1 }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/box-flat.png"
+        src="/box-flat.webp"
         alt=""
         aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
         style={{ position: "absolute", right: 0, top: 0, width: "55%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: 0.5 }}
       />
 
@@ -179,6 +181,8 @@ export default function VHero() {
           <img
             src="/logo-hangtag.jpg"
             alt="VERNY 로고 행택"
+            loading="lazy"
+            decoding="async"
             style={{ width: 180, height: 180, objectFit: "cover", borderRadius: "50%", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}
           />
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", letterSpacing: "0.18em", textAlign: "center", fontStyle: "italic", fontFamily: "var(--font-serif)" }}>
