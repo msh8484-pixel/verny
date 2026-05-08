@@ -183,7 +183,7 @@ export default function VHero() {
             alt="VERNY 로고 행택"
             loading="lazy"
             decoding="async"
-            style={{ width: 260, height: 260, objectFit: "cover", objectPosition: "center 40%", borderRadius: "50%", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}
+            style={{ width: 260, height: 260, objectFit: "cover", objectPosition: "center 15%", borderRadius: "50%", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}
           />
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", letterSpacing: "0.18em", textAlign: "center", fontStyle: "italic", fontFamily: "var(--font-serif)" }}>
             Trust Begins at the Detail
