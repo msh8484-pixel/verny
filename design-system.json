@@ -1,0 +1,1017 @@
+{
+  "meta": {
+    "source": "https://www.sennebogen.com/en",
+    "domain": "sennebogen-com",
+    "generatedAt": "2026-04-21T15:35:26.785Z"
+  },
+  "colors": {
+    "primary": "#a8a8a8",
+    "secondary": "#296610",
+    "accent": "#4ba829",
+    "dark": "#4d4d4d",
+    "light": null,
+    "text": "#373737",
+    "background": "#f3f3f3"
+  },
+  "colorAll": [
+    "#a8a8a8",
+    "#4d4d4d",
+    "#373737",
+    "#296610",
+    "#2d2d2d",
+    "#373737",
+    "#4ba829",
+    "#373737",
+    "#9f9f9f",
+    "#f3f3f3",
+    "#e3f3dd",
+    "#4d4d4d"
+  ],
+  "typography": {
+    "primaryFont": "Montserrat",
+    "googleFontsUrl": null,
+    "scale": [
+      "14px",
+      "16px",
+      "22px",
+      "18px",
+      "20px",
+      "15px",
+      "92px",
+      "36px"
+    ]
+  },
+  "animation": {
+    "engine": "css",
+    "style": "fade"
+  },
+  "layout": {
+    "heroFullscreen": true,
+    "alternatingBg": true,
+    "gridLayout": true,
+    "sectionCount": 7
+  },
+  "navigation": {
+    "navLinks": [
+      {
+        "text": "News & trade fairs",
+        "href": "https://www.sennebogen.com/en/news"
+      },
+      {
+        "text": "News & press",
+        "href": "https://www.sennebogen.com/en/news/news-press"
+      },
+      {
+        "text": "Trade fairs & events",
+        "href": "https://www.sennebogen.com/en/news/trade-fairs-events"
+      },
+      {
+        "text": "Customer magazine",
+        "href": "https://www.sennebogen.com/en/news/customer-magazine"
+      },
+      {
+        "text": "Videos",
+        "href": "https://www.sennebogen.com/en/news/videos"
+      },
+      {
+        "text": "Downloads",
+        "href": "https://www.sennebogen.com/en/downloads"
+      },
+      {
+        "text": "Brochures",
+        "href": "https://www.sennebogen.com/en/downloads"
+      },
+      {
+        "text": "Pictures & logos",
+        "href": "https://www.sennebogen.com/en/downloads/pictures-logos"
+      },
+      {
+        "text": "Whitepapers",
+        "href": "https://www.sennebogen.com/en/downloads/whitepapers"
+      },
+      {
+        "text": "Technology",
+        "href": "https://www.sennebogen.com/en/technology"
+      },
+      {
+        "text": "Cabs",
+        "href": "https://www.sennebogen.com/en/technology/cabs"
+      },
+      {
+        "text": "Electro / Battery",
+        "href": "https://www.sennebogen.com/en/technology/electro-battery"
+      },
+      {
+        "text": "Energy recovery system",
+        "href": "https://www.sennebogen.com/en/technology/green-hybrid-energy-recovery-system"
+      },
+      {
+        "text": "Control system",
+        "href": "https://www.sennebogen.com/en/technology/control-system-sencon"
+      },
+      {
+        "text": "Academy",
+        "href": "https://www.sennebogen-academy.com/en.html"
+      },
+      {
+        "text": "Rental & Used",
+        "href": "https://www.sennebogen-rental-used.com/en.html"
+      },
+      {
+        "text": "Shop",
+        "href": "https://www.sennebogen.com/shop/en"
+      },
+      {
+        "text": "Contact",
+        "href": "https://www.sennebogen.com/en/contact-form"
+      },
+      {
+        "text": "Find dealer",
+        "href": "https://www.sennebogen.com/en/service/dealer-search"
+      },
+      {
+        "text": "mySENNEBOGEN",
+        "href": "https://mysennebogen.com/"
+      },
+      {
+        "text": "Prod­ucts",
+        "href": "https://www.sennebogen.com/en/products"
+      },
+      {
+        "text": "Ma­te­r­ial han­dler",
+        "href": "https://www.sennebogen.com/en/products/material-handler"
+      },
+      {
+        "text": "Bal­ance ma­te­r­ial han­dler",
+        "href": "https://www.sennebogen.com/en/products/balance-material-handler"
+      },
+      {
+        "text": "Tele­han­dler",
+        "href": "https://www.sennebogen.com/en/products/telehandler"
+      },
+      {
+        "text": "Tree care han­dler",
+        "href": "https://www.sennebogen.com/en/products/tree-care-handler"
+      },
+      {
+        "text": "De­mo­li­tion ma­chine",
+        "href": "https://www.sennebogen.com/en/products/demolition-machine"
+      },
+      {
+        "text": "Tele­scopic crane",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane"
+      },
+      {
+        "text": "Crawler crane",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane"
+      },
+      {
+        "text": "Duty cycle crane",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline"
+      },
+      {
+        "text": "Port crane",
+        "href": "https://www.sennebogen.com/en/products/port-crane"
+      },
+      {
+        "text": "Grabs and at­tach­ments",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments"
+      },
+      {
+        "text": "Technology",
+        "href": "https://www.sennebogen.com/en/technology"
+      },
+      {
+        "text": "Rental and Used Machines",
+        "href": "https://www.sennebogen-rental-used.com/"
+      },
+      {
+        "text": "Why SENNEBOGEN?",
+        "href": "https://www.sennebogen.com/en/why-sennebogen"
+      },
+      {
+        "text": "In­dus­tries",
+        "href": "https://www.sennebogen.com/en/industries"
+      },
+      {
+        "text": "Scrap handling / steel mills",
+        "href": "https://www.sennebogen.com/en/industries/scrap-handling-steel-mills"
+      },
+      {
+        "text": "Port Handling",
+        "href": "https://www.sennebogen.com/en/industries/port-handling"
+      },
+      {
+        "text": "Timber handling",
+        "href": "https://www.sennebogen.com/en/industries/timber-handling"
+      },
+      {
+        "text": "Waste / Recycling",
+        "href": "https://www.sennebogen.com/en/branchen/waste-recycling"
+      },
+      {
+        "text": "Demolition",
+        "href": "https://www.sennebogen.com/en/industries/demolition"
+      },
+      {
+        "text": "Industry (material handling)",
+        "href": "https://www.sennebogen.com/en/industries/industry"
+      },
+      {
+        "text": "Crane Rental",
+        "href": "https://www.sennebogen.com/en/industries/crane-rental"
+      },
+      {
+        "text": "Industrial assembly",
+        "href": "https://www.sennebogen.com/en/industries/industrial-assembly"
+      },
+      {
+        "text": "Plant engineering",
+        "href": "https://www.sennebogen.com/en/industries/plant-engineering"
+      },
+      {
+        "text": "Offshore & Harbor crane",
+        "href": "https://www.sennebogen.com/en/industries/offshore-and-harbour-cranes"
+      },
+      {
+        "text": "Dredging",
+        "href": "https://www.sennebogen.com/en/industries/dredging"
+      },
+      {
+        "text": "Hydraulic engineering",
+        "href": "https://www.sennebogen.com/en/industries/hydraulic-engineering"
+      },
+      {
+        "text": "Special Civil Engineering",
+        "href": "https://www.sennebogen.com/en/industries/special-civil-engineering"
+      },
+      {
+        "text": "Raw material extraction",
+        "href": "https://www.sennebogen.com/en/industries/raw-material-extraction"
+      },
+      {
+        "text": "Technology",
+        "href": "https://www.sennebogen.com/en/technology"
+      },
+      {
+        "text": "Rental and Used Machines",
+        "href": "https://www.sennebogen-rental-used.com/"
+      },
+      {
+        "text": "Why SENNEBOGEN?",
+        "href": "https://www.sennebogen.com/en/why-sennebogen"
+      },
+      {
+        "text": "Ser­vice",
+        "href": "https://www.sennebogen.com/en/service"
+      },
+      {
+        "text": "Technology",
+        "href": "https://www.sennebogen.com/en/technology"
+      },
+      {
+        "text": "Rental and Used Machines",
+        "href": "https://www.sennebogen-rental-used.com/"
+      },
+      {
+        "text": "Why SENNEBOGEN?",
+        "href": "https://www.sennebogen.com/en/why-sennebogen"
+      },
+      {
+        "text": "Dealer search",
+        "href": "https://www.sennebogen.com/en/service/dealer-search"
+      },
+      {
+        "text": "Customer service",
+        "href": "https://www.sennebogen.com/en/service/customer-service"
+      },
+      {
+        "text": "Spare parts",
+        "href": "https://www.sennebogen.com/en/service/spare-parts"
+      },
+      {
+        "text": "Lubricants and auxiliaries",
+        "href": "https://www.sennebogen.com/en/service/spare-parts/lubricants-and-auxiliaries"
+      },
+      {
+        "text": "Digital Services",
+        "href": "https://www.sennebogen.com/en/service/digital-services"
+      },
+      {
+        "text": "Training & Academy",
+        "href": "https://www.sennebogen.com/en/service/training-academy"
+      },
+      {
+        "text": "SENtrack telematics system",
+        "href": "https://www.sennebogen.com/en/service/sentrack-telematics-system"
+      },
+      {
+        "text": "Machine remanufacturing",
+        "href": "https://www.sennebogen-svg.com/de/sennebogen-rebuild.html"
+      },
+      {
+        "text": "Advice & project planning",
+        "href": "https://www.sennebogen.com/en/service/advice-project-planning"
+      },
+      {
+        "text": "Financing",
+        "href": "https://www.sennebogen.com/en/service/finance"
+      },
+      {
+        "text": "The Com­pany",
+        "href": "https://www.sennebogen.com/en/the-company"
+      },
+      {
+        "text": "Why SENNEBOGEN?",
+        "href": "https://www.sennebogen.com/en/why-sennebogen"
+      },
+      {
+        "text": "Customer Magazine",
+        "href": "https://www.sennebogen.com/en/news/customer-magazine"
+      },
+      {
+        "text": "Sustainability",
+        "href": "https://www.sennebogen.com/en/the-company/sustainability"
+      },
+      {
+        "text": "Compliance",
+        "href": "https://www.sennebogen.com/en/the-company/compliance"
+      },
+      {
+        "text": "Ca­reers",
+        "href": "https://www.sennebogen.com/en/careers"
+      },
+      {
+        "text": "Overview",
+        "href": "https://www.sennebogen.com/en/careers"
+      },
+      {
+        "text": "Vacancies",
+        "href": "https://sennebogen-careers.digitalrecruiters.com/de/annonces"
+      },
+      {
+        "text": "Benefits",
+        "href": "https://www.sennebogen.com/en/careers/benefits"
+      },
+      {
+        "text": "Apprenticeship",
+        "href": "https://www.sennebogen.com/en/careers/training"
+      },
+      {
+        "text": "Professionals and executives",
+        "href": "https://www.sennebogen.com/en/careers/technical-and-managerial-staff"
+      },
+      {
+        "text": "Students",
+        "href": "https://www.sennebogen.com/en/careers/students"
+      },
+      {
+        "text": "Graduates",
+        "href": "https://www.sennebogen.com/en/careers/graduates"
+      },
+      {
+        "text": "EN",
+        "href": "https://www.sennebogen.com/en/"
+      },
+      {
+        "text": "DE",
+        "href": "https://www.sennebogen.com/"
+      },
+      {
+        "text": "DE",
+        "href": "https://www.sennebogen.com/"
+      },
+      {
+        "text": "Products",
+        "href": "https://www.sennebogen.com/en/products"
+      },
+      {
+        "text": "Material handler",
+        "href": "https://www.sennebogen.com/en/products/material-handler"
+      },
+      {
+        "text": "818 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-818"
+      },
+      {
+        "text": "821 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-821"
+      },
+      {
+        "text": "822 G",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-822"
+      },
+      {
+        "text": "723 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-723"
+      },
+      {
+        "text": "724 G",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-724-g"
+      },
+      {
+        "text": "726 G",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-726-g"
+      },
+      {
+        "text": "730 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-730"
+      },
+      {
+        "text": "830 G",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-830-g"
+      },
+      {
+        "text": "735 EVariants: Electric Drive",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-735"
+      },
+      {
+        "text": "835 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-835"
+      },
+      {
+        "text": "835 G Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-835-g-hybrid"
+      },
+      {
+        "text": "840 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-840"
+      },
+      {
+        "text": "850 E",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-850"
+      },
+      {
+        "text": "850 G Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-850-g"
+      },
+      {
+        "text": "855 E Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-855-hybrid"
+      },
+      {
+        "text": "865 E Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-865-hybrid"
+      },
+      {
+        "text": "870 E Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-870-hybrid"
+      },
+      {
+        "text": "875 E Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-875-hybrid"
+      },
+      {
+        "text": "875 G Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-875-g"
+      },
+      {
+        "text": "885 G Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-885"
+      },
+      {
+        "text": "895 E Hybrid",
+        "href": "https://www.sennebogen.com/en/products/material-handler/sennebogen-895-hybrid"
+      },
+      {
+        "text": "Balance material handler",
+        "href": "https://www.sennebogen.com/en/products/balance-material-handler"
+      },
+      {
+        "text": "EQ G",
+        "href": "https://www.sennebogen.com/en/products/balance-material-handler/sennebogen-eq-balancer-g-series"
+      },
+      {
+        "text": "Telehandler",
+        "href": "https://www.sennebogen.com/en/products/telehandler"
+      },
+      {
+        "text": "340 G",
+        "href": "https://www.sennebogen.com/en/products/telehandler/sennebogen-340"
+      },
+      {
+        "text": "360 G",
+        "href": "https://www.sennebogen.com/en/products/telehandler/sennebogen-360-g"
+      },
+      {
+        "text": "Tree care handler",
+        "href": "https://www.sennebogen.com/en/products/tree-care-handler"
+      },
+      {
+        "text": "718",
+        "href": "https://www.sennebogen.com/en/products/tree-care-handler/sennebogen-718"
+      },
+      {
+        "text": "728",
+        "href": "https://www.sennebogen.com/en/products/tree-care-handler/sennebogen-728"
+      },
+      {
+        "text": "738",
+        "href": "https://www.sennebogen.com/en/products/tree-care-handler/sennebogen-738"
+      },
+      {
+        "text": "Demolition machine",
+        "href": "https://www.sennebogen.com/en/products/demolition-machine"
+      },
+      {
+        "text": "825 Demolition",
+        "href": "https://www.sennebogen.com/en/products/demolition-machine/sennebogen-825-demolition"
+      },
+      {
+        "text": "830 Demolition",
+        "href": "https://www.sennebogen.com/en/products/demolition-machine/sennebogen-830-e-demolition"
+      },
+      {
+        "text": "870 Demolition",
+        "href": "https://www.sennebogen.com/en/products/demolition-machine/sennebogen-870-demolition"
+      },
+      {
+        "text": "Telescopic crane",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane"
+      },
+      {
+        "text": "613",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-613"
+      },
+      {
+        "text": "643",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-643"
+      },
+      {
+        "text": "653Variants: Electro Battery",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-653"
+      },
+      {
+        "text": "673",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-673"
+      },
+      {
+        "text": "683",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-683"
+      },
+      {
+        "text": "6103",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-6103"
+      },
+      {
+        "text": "6113",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-6113"
+      },
+      {
+        "text": "6133",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-6133"
+      },
+      {
+        "text": "6203",
+        "href": "https://www.sennebogen.com/en/products/telescopic-crane/sennebogen-6203"
+      },
+      {
+        "text": "Crawler crane",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane"
+      },
+      {
+        "text": "1100",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane/sennebogen-1100"
+      },
+      {
+        "text": "2200",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane/sennebogen-2200"
+      },
+      {
+        "text": "4400",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane/sennebogen-4400"
+      },
+      {
+        "text": "5500",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane/sennebogen-5500"
+      },
+      {
+        "text": "7700",
+        "href": "https://www.sennebogen.com/en/products/crawler-crane/sennebogen-7700"
+      },
+      {
+        "text": "Duty cycle crane",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline"
+      },
+      {
+        "text": "630",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-630"
+      },
+      {
+        "text": "640",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-640"
+      },
+      {
+        "text": "655",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-655"
+      },
+      {
+        "text": "670",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-670"
+      },
+      {
+        "text": "6100",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-6100"
+      },
+      {
+        "text": "6140",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-6140"
+      },
+      {
+        "text": "6220",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-6220"
+      },
+      {
+        "text": "6300",
+        "href": "https://www.sennebogen.com/en/products/duty-cycle-crane-and-dragline/sennebogen-6300"
+      },
+      {
+        "text": "Port crane",
+        "href": "https://www.sennebogen.com/en/products/port-crane"
+      },
+      {
+        "text": "2200 HMC",
+        "href": "https://www.sennebogen.com/en/products/port-crane/sennebogen-2200"
+      },
+      {
+        "text": "9300",
+        "href": "https://www.sennebogen.com/en/products/port-crane/sennebogen-9300"
+      },
+      {
+        "text": "Grabs and attachments",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments"
+      },
+      {
+        "text": "Orange peel grab",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/orange-peel-grab"
+      },
+      {
+        "text": "Clamshell grab",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/clamshell-grab"
+      },
+      {
+        "text": "Timber grab",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/timber-grab"
+      },
+      {
+        "text": "Sorting grab",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/sorting-grab"
+      },
+      {
+        "text": "Quick-change systems",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/quick-change-systems"
+      },
+      {
+        "text": "Loading hook",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/loading-hook"
+      },
+      {
+        "text": "Generators and scrap magnets",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/generators-and-scrap-magnets"
+      },
+      {
+        "text": "Grab suspension",
+        "href": "https://www.sennebogen.com/en/products/grabs-and-attachments/grab-suspension"
+      },
+      {
+        "text": "Industries",
+        "href": "https://www.sennebogen.com/en/industries"
+      },
+      {
+        "text": "Port Handling",
+        "href": "https://www.sennebogen.com/en/industries/port-handling"
+      },
+      {
+        "text": "Timber handling",
+        "href": "https://www.sennebogen.com/en/industries/timber-handling"
+      },
+      {
+        "text": "WasteVariants: Recycling",
+        "href": "https://www.sennebogen.com/en/branchen/waste-recycling"
+      },
+      {
+        "text": "Demolition",
+        "href": "https://www.sennebogen.com/en/industries/demolition"
+      },
+      {
+        "text": "Industry (material handling)",
+        "href": "https://www.sennebogen.com/en/industries/industry"
+      },
+      {
+        "text": "Crane Rental",
+        "href": "https://www.sennebogen.com/en/industries/crane-rental"
+      },
+      {
+        "text": "Sewer construction",
+        "href": "https://www.sennebogen.com/en/industries/structural-and-civil-engineering/sewer-construction"
+      },
+      {
+        "text": "Tunneling",
+        "href": "https://www.sennebogen.com/en/industries/structural-and-civil-engineering/tunnel-construction"
+      },
+      {
+        "text": "Bridge Construction",
+        "href": "https://www.sennebogen.com/en/industries/structural-and-civil-engineering/bridge-construction"
+      },
+      {
+        "text": "Infrastructure construction",
+        "href": "https://www.sennebogen.com/en/industries/structural-and-civil-engineering/instrastructure-construction"
+      },
+      {
+        "text": "Prefabricated parts assembly",
+        "href": "https://www.sennebogen.com/en/industries/structural-and-civil-engineering/prefabricated-parts-assembly"
+      },
+      {
+        "text": "Industrial assembly",
+        "href": "https://www.sennebogen.com/en/industries/industrial-assembly"
+      },
+      {
+        "text": "Plant engineering",
+        "href": "https://www.sennebogen.com/en/industries/plant-engineering"
+      },
+      {
+        "text": "Offshore & Harbor crane",
+        "href": "https://www.sennebogen.com/en/industries/offshore-and-harbour-cranes"
+      },
+      {
+        "text": "Dredging",
+        "href": "https://www.sennebogen.com/en/industries/dredging"
+      },
+      {
+        "text": "Hydraulic engineering",
+        "href": "https://www.sennebogen.com/en/industries/hydraulic-engineering"
+      },
+      {
+        "text": "Special Civil Engineering",
+        "href": "https://www.sennebogen.com/en/industries/special-civil-engineering"
+      },
+      {
+        "text": "Soil compaction",
+        "href": "https://www.sennebogen.com/en/industries/special-civil-engineering/soil-compaction"
+      },
+      {
+        "text": "Industry (material handling)",
+        "href": "https://www.sennebogen.com/en/industries/special-civil-engineering/excavation-pit-support"
+      },
+      {
+        "text": "Raw material extraction",
+        "href": "https://www.sennebogen.com/en/industries/raw-material-extraction"
+      },
+      {
+        "text": "Service",
+        "href": "https://www.sennebogen.com/en/service"
+      },
+      {
+        "text": "Dealer search",
+        "href": "https://www.sennebogen.com/en/service/dealer-search"
+      },
+      {
+        "text": "Customer service",
+        "href": "https://www.sennebogen.com/en/service/customer-service"
+      },
+      {
+        "text": "Spare parts",
+        "href": "https://www.sennebogen.com/en/service/spare-parts"
+      },
+      {
+        "text": "Lubricants and auxiliaries",
+        "href": "https://www.sennebogen.com/en/service/spare-parts/lubricants-and-auxiliaries"
+      },
+      {
+        "text": "Digital Services",
+        "href": "https://www.sennebogen.com/en/service/digital-services"
+      },
+      {
+        "text": "Training & Academy",
+        "href": "https://www.sennebogen.com/en/service/training-academy"
+      },
+      {
+        "text": "Rental & used machines",
+        "href": "https://www.sennebogen.com/en/service/rental-machines-used-machines"
+      },
+      {
+        "text": "SENtrack telematics system",
+        "href": "https://www.sennebogen.com/en/service/sentrack-telematics-system"
+      },
+      {
+        "text": "Machine remanufacturing",
+        "href": "https://www.sennebogen-svg.com/de/sennebogen-rebuild.html"
+      },
+      {
+        "text": "Advice & project planning",
+        "href": "https://www.sennebogen.com/en/service/advice-project-planning"
+      },
+      {
+        "text": "Financing",
+        "href": "https://www.sennebogen.com/en/service/finance"
+      },
+      {
+        "text": "The Company",
+        "href": "https://www.sennebogen.com/en/the-company"
+      },
+      {
+        "text": "About SENNEBOGEN",
+        "href": "https://www.sennebogen.com/en/the-company"
+      },
+      {
+        "text": "Locations",
+        "href": "https://www.sennebogen.com/en/the-company/locations"
+      },
+      {
+        "text": "Quality made in Germany",
+        "href": "https://www.sennebogen.com/en/the-company/quality-made-in-germany"
+      },
+      {
+        "text": "History",
+        "href": "https://www.sennebogen.com/en/the-company/history"
+      },
+      {
+        "text": "suppliers/providers",
+        "href": "https://www.sennebogen.com/en/the-company/suppliers-providers"
+      },
+      {
+        "text": "Foundation",
+        "href": "https://www.sennebogen-stiftung.de/en.html"
+      },
+      {
+        "text": "Shop",
+        "href": "https://www.sennebogen.com/shop/en"
+      },
+      {
+        "text": "Operators Club",
+        "href": "https://www.sennebogen.com/en/the-company/operators-club"
+      },
+      {
+        "text": "Giveaway",
+        "href": "https://www.sennebogen.com/en/the-company/operators-club/giveaway"
+      },
+      {
+        "text": "Sustainability",
+        "href": "https://www.sennebogen.com/en/the-company/sustainability"
+      },
+      {
+        "text": "Compliance",
+        "href": "https://www.sennebogen.com/en/the-company/compliance"
+      },
+      {
+        "text": "Careers",
+        "href": "https://www.sennebogen.com/en/careers"
+      },
+      {
+        "text": "Overview",
+        "href": "https://www.sennebogen.com/en/careers"
+      },
+      {
+        "text": "Vacancies",
+        "href": "https://sennebogen-careers.digitalrecruiters.com/de/annonces"
+      },
+      {
+        "text": "Benefits",
+        "href": "https://www.sennebogen.com/en/careers/benefits"
+      },
+      {
+        "text": "Apprenticeship",
+        "href": "https://www.sennebogen.com/en/careers/training"
+      },
+      {
+        "text": "Professionals and executives",
+        "href": "https://www.sennebogen.com/en/careers/technical-and-managerial-staff"
+      },
+      {
+        "text": "Students",
+        "href": "https://www.sennebogen.com/en/careers/students"
+      },
+      {
+        "text": "Graduates",
+        "href": "https://www.sennebogen.com/en/careers/graduates"
+      }
+    ],
+    "logo": {
+      "tag": "img",
+      "src": "https://www.sennebogen.com/_assets/1d22e063b65eb268d5f92b6a62c2486f/Images/sennebogen-logo-444px.svg",
+      "text": null,
+      "alt": "SENNEBOGEN logo"
+    }
+  },
+  "sections": [
+    {
+      "index": 0,
+      "label": "relative",
+      "type": "hero",
+      "screenshot": "section-00.png",
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "headings": [],
+      "paragraphs": [
+        "An international family-owned company",
+        "Germany, Hungary, USA, Malaysia and Singapore"
+      ],
+      "hasSlider": false,
+      "hasForm": true,
+      "hasGrid": true,
+      "hasVideo": false,
+      "height": 130
+    },
+    {
+      "index": 1,
+      "label": "SENNEBOGEN – MOVE BIG THINGS!",
+      "type": "section",
+      "screenshot": "section-01.png",
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "headings": [
+        "SENNEBOGEN – MOVE BIG THINGS!"
+      ],
+      "paragraphs": [
+        "We are SENNEBOGEN - one of the leading global manufacturers with the widest range of material handling machines and crane technology. We engineer and build configurable material handlers, electric & battery-powered material handlers, balancer handlers, telehandlers, tree care handlers, demolition machines, crawler cranes, telescopic cranes, duty cycle cranes and port cranes.",
+        "Efficient, robust and easy to maintain – we have been producing “Made in Germany” quality since 1952 with modular solutions for a wide range of industries and specialized customer-specific machines.Contact us – we give everything to ensure that your SENNEBOGEN machine and our service meet your needs!"
+      ],
+      "hasSlider": false,
+      "hasForm": false,
+      "hasGrid": true,
+      "hasVideo": false,
+      "height": 473
+    },
+    {
+      "index": 2,
+      "label": "SENNEBOGEN rental & used",
+      "type": "hero",
+      "screenshot": "section-02.png",
+      "bgColor": "rgb(243, 243, 243)",
+      "headings": [
+        "SENNEBOGEN rental & used",
+        "Rental & used machines"
+      ],
+      "paragraphs": [
+        "Used and rental machines require less investment and are available in the shortest possible time! Find your machine at SENNEBOGEN Rental & Used!",
+        "LeARN MORE NOW!"
+      ],
+      "hasSlider": true,
+      "hasForm": false,
+      "hasGrid": true,
+      "hasVideo": false,
+      "height": 450
+    },
+    {
+      "index": 3,
+      "label": "Why SENNEBOGEN?",
+      "type": "nav",
+      "screenshot": "section-03.png",
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "headings": [
+        "Why SENNEBOGEN?"
+      ],
+      "paragraphs": [],
+      "hasSlider": false,
+      "hasForm": false,
+      "hasGrid": false,
+      "hasVideo": false,
+      "height": 116
+    },
+    {
+      "index": 4,
+      "label": "banner-arrow",
+      "type": "hero",
+      "screenshot": "section-04.png",
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "headings": [],
+      "paragraphs": [],
+      "hasSlider": false,
+      "hasForm": false,
+      "hasGrid": false,
+      "hasVideo": false,
+      "height": 624
+    },
+    {
+      "index": 5,
+      "label": "We are recruiting",
+      "type": "hero",
+      "screenshot": "section-05.png",
+      "bgColor": "rgba(0, 0, 0, 0)",
+      "headings": [
+        "We are recruiting"
+      ],
+      "paragraphs": [
+        "We are always on the lookout for qualified employees. Become part of our team."
+      ],
+      "hasSlider": false,
+      "hasForm": false,
+      "hasGrid": true,
+      "hasVideo": false,
+      "height": 624
+    },
+    {
+      "index": 6,
+      "label": "text-gray-300",
+      "type": "footer",
+      "screenshot": "section-06.png",
+      "bgColor": "rgb(45, 45, 45)",
+      "headings": [],
+      "paragraphs": [],
+      "hasSlider": false,
+      "hasForm": false,
+      "hasGrid": true,
+      "hasVideo": false,
+      "height": 738
+    }
+  ],
+  "rawIntelligence": "agent-input/sennebogen-com/intelligence.json"
+}
