@@ -64,10 +64,10 @@ export default function VProduct() {
         >
           {/* 3D 이미지 */}
           <div ref={sockImgRef} style={{ opacity: 0, transformStyle: "preserve-3d", perspective: "1000px" }}>
-            {/* 컬러 스와치 */}
+            {/* 컬러 스와치 + 3D 보기 버튼 */}
             <div
               className="color-btns"
-              style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}
+              style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap", alignItems: "center" }}
             >
               {COLORS.map((col, i) => (
                 <button
@@ -86,10 +86,22 @@ export default function VProduct() {
                   </span>
                 </button>
               ))}
+              <a
+                href="/viewer"
+                style={{
+                  marginLeft: "auto", display: "flex", alignItems: "center", gap: 6,
+                  padding: "9px 14px", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 2,
+                  textDecoration: "none", background: "transparent", transition: "all 0.2s",
+                  whiteSpace: "nowrap",
+                }}
+                onMouseOver={(e) => { e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
+                onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; }}
+              >
+                <span style={{ fontSize: 11, color: "#C9A84C", fontWeight: 700, letterSpacing: "0.06em" }}>3D 보기 →</span>
+              </a>
             </div>
 
             {/* 이미지 카드 — 부유 */}
-            <a href="/viewer" style={{ display: "block", textDecoration: "none", position: "relative" }} title="3D로 보기">
             <div
               ref={floatRef}
               style={{
@@ -98,7 +110,6 @@ export default function VProduct() {
                 overflow: "hidden",
                 boxShadow: "0 32px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.12)",
                 position: "relative",
-                cursor: "pointer",
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,17 +118,18 @@ export default function VProduct() {
                 alt="VERNY 드레스 양말 3종"
                 style={{ width: "100%", display: "block" }}
               />
-              {/* 비선택 영역 어둡게 */}
+              {/* 컬럼 클릭 영역 */}
               {[0, 1, 2].map((i) => (
                 <div
                   key={i}
+                  onClick={() => setActiveColor(i)}
                   style={{
                     position: "absolute", top: 0, bottom: 0,
                     left: `${i * 33.33}%`, width: "33.34%",
                     backgroundColor: "rgba(0,0,0,0.55)",
                     opacity: activeColor === i ? 0 : 1,
                     transition: "opacity 0.35s ease",
-                    pointerEvents: "none",
+                    cursor: "pointer",
                   }}
                 />
               ))}
@@ -133,13 +145,8 @@ export default function VProduct() {
                   borderRadius: 2,
                 }}
               />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "linear-gradient(to right, transparent, #C9A84C, transparent)" }} />
-              {/* 3D 보기 힌트 */}
-              <div style={{ position: "absolute", top: 12, right: 12, backgroundColor: "rgba(0,0,0,0.6)", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 3, padding: "4px 8px", pointerEvents: "none" }}>
-                <span style={{ fontSize: 10, color: "#C9A84C", letterSpacing: "0.06em", fontWeight: 600 }}>3D 보기 →</span>
-              </div>
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "linear-gradient(to right, transparent, #C9A84C, transparent)", pointerEvents: "none" }} />
             </div>
-            </a>
 
             {/* 팬톤 표시 */}
             <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 10, padding: "11px 14px", backgroundColor: "rgba(255,255,255,0.04)", borderRadius: 4, border: "1px solid rgba(255,255,255,0.07)" }}>
