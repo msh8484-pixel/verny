@@ -205,29 +205,19 @@ export default function VHero() {
           }}
           className="hide-mobile"
         >
-          <div style={{ position: "relative", width: 180, height: 180, borderRadius: "50%", overflow: "hidden", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo-hangtag.jpg"
-              alt="VERNY 로고 행택"
-              style={{
-                width: 180,
-                height: 180,
-                objectFit: "cover",
-              }}
-            />
-            {/* 하단 디자인 파일 레이블 가리기 */}
-            <div style={{
-              position: "absolute",
-              bottom: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "80%",
-              height: 28,
-              backgroundColor: "#c8c3b8",
-              borderRadius: "0 0 90px 90px",
-            }} />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-hangtag.jpg"
+            alt="VERNY 로고 행택"
+            style={{
+              width: 180,
+              height: 180,
+              objectFit: "cover",
+              borderRadius: "50%",
+              border: "1px solid rgba(201,168,76,0.3)",
+              filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))",
+            }}
+          />
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", letterSpacing: "0.2em", textAlign: "center" }}>
             Trust Begins at the Detail
           </p>
