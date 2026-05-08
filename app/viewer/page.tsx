@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 const COLORS = [
   { id: "navy",     label: "다크네이비", hex: "#1B2D4F", img: "/sock-navy-views.webp" },
@@ -10,9 +11,20 @@ const COLORS = [
 
 const ANGLES = ["정면", "측면", "발바닥 정면", "발바닥 측면"];
 
-export default function ViewerPage() {
-  const [active, setActive] = useState(0);
+function ViewerContent() {
+  const searchParams = useSearchParams();
+  const [active, setActive] = useState(() => {
+    const colorId = searchParams.get("color");
+    const idx = COLORS.findIndex((c) => c.id === colorId);
+    return idx >= 0 ? idx : 0;
+  });
   const [zoom, setZoom] = useState<number | null>(null);
+
+  useEffect(() => {
+    const colorId = searchParams.get("color");
+    const idx = COLORS.findIndex((c) => c.id === colorId);
+    if (idx >= 0) setActive(idx);
+  }, [searchParams]);
 
   const c = COLORS[active];
 
@@ -142,5 +154,13 @@ export default function ViewerPage() {
         ← 홈으로
       </a>
     </div>
+  );
+}
+
+export default function ViewerPage() {
+  return (
+    <Suspense fallback={null}>
+      <ViewerContent />
+    </Suspense>
   );
 }

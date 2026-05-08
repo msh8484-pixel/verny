@@ -87,7 +87,7 @@ export default function VProduct() {
                 </button>
               ))}
               <a
-                href="/viewer"
+                href={`/viewer?color=${COLORS[activeColor].id}`}
                 style={{
                   marginLeft: "auto", display: "flex", alignItems: "center", gap: 6,
                   padding: "9px 14px", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 2,
