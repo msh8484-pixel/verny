@@ -205,7 +205,7 @@ export default function VHero() {
           }}
           className="hide-mobile"
         >
-          <div style={{ position: "relative", width: 180, height: 180 }}>
+          <div style={{ position: "relative", width: 180, height: 180, borderRadius: "50%", overflow: "hidden", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo-hangtag.jpg"
@@ -214,9 +214,6 @@ export default function VHero() {
                 width: 180,
                 height: 180,
                 objectFit: "cover",
-                borderRadius: "50%",
-                border: "1px solid rgba(201,168,76,0.3)",
-                filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))",
               }}
             />
             {/* 하단 디자인 파일 레이블 가리기 */}
