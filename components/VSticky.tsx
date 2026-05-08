@@ -16,43 +16,26 @@ export default function VSticky() {
   return (
     <div
       style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 99,
+        position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 99,
         transform: show ? "translateY(0)" : "translateY(100%)",
         transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
         backgroundColor: "#0a1528",
-        borderTop: "1px solid rgba(201,168,76,0.25)",
-        padding: "14px 40px",
+        borderTop: "1px solid rgba(201,168,76,0.22)",
+        padding: "12px 20px",
       }}
     >
       <div
+        className="sticky-inner"
         style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 20,
-          flexWrap: "wrap",
+          maxWidth: 1200, margin: "0 auto",
+          display: "flex", alignItems: "center",
+          justifyContent: "space-between", gap: 16,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <span
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: 18,
-              fontWeight: 600,
-              color: "#C9A84C",
-              letterSpacing: "0.12em",
-            }}
-          >
-            VERNY
-          </span>
-          <span style={{ width: 1, height: 16, backgroundColor: "rgba(201,168,76,0.3)", display: "inline-block" }} />
-          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: 17, fontWeight: 600, color: "#C9A84C", letterSpacing: "0.12em", flexShrink: 0 }}>VERNY</span>
+          <span className="hide-mobile" style={{ width: 1, height: 14, backgroundColor: "rgba(201,168,76,0.3)", display: "inline-block", flexShrink: 0 }} />
+          <span className="hide-mobile" style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             프리미엄 드레스 양말
           </span>
         </div>
@@ -61,24 +44,16 @@ export default function VSticky() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            backgroundColor: "#C9A84C",
-            color: "#0a1528",
-            padding: "10px 28px",
-            fontSize: 13,
-            fontWeight: 800,
-            letterSpacing: "0.08em",
-            textDecoration: "none",
-            borderRadius: 2,
-            transition: "background 0.2s",
-            whiteSpace: "nowrap",
+            display: "inline-flex", alignItems: "center", gap: 8,
+            backgroundColor: "#C9A84C", color: "#0a1528",
+            padding: "10px 24px", fontSize: 13, fontWeight: 800,
+            letterSpacing: "0.06em", textDecoration: "none",
+            borderRadius: 2, transition: "background 0.2s", whiteSpace: "nowrap", flexShrink: 0,
           }}
           onMouseOver={(e) => { e.currentTarget.style.backgroundColor = "#E2C97E"; }}
           onMouseOut={(e) => { e.currentTarget.style.backgroundColor = "#C9A84C"; }}
         >
-          네이버쇼핑에서 구매하기 →
+          네이버쇼핑 구매 →
         </a>
       </div>
     </div>

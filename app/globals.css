@@ -13,10 +13,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-}
+html { scroll-behavior: smooth; height: 100%; }
 
 body {
   font-family: var(--font-body);
@@ -28,15 +25,51 @@ body {
   overflow-x: hidden;
 }
 
-/* 스크롤바 스타일 */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-/* 반응형 — 모바일 */
+/* ───── 반응형 그리드 ───── */
+.grid-2-col { display: grid; grid-template-columns: 1fr 1fr; }
+.grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); }
+.hero-grid  { display: grid; grid-template-columns: 1fr 1fr; }
+
+/* ───── 태블릿 (1024px 이하) ───── */
+@media (max-width: 1024px) {
+  .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
+}
+
+/* ───── 모바일 (768px 이하) ───── */
 @media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
-  .stack-mobile { flex-direction: column !important; }
-  .full-mobile { width: 100% !important; }
-  .text-center-mobile { text-align: center !important; }
+  .hide-mobile    { display: none !important; }
+  .show-mobile    { display: block !important; }
+  .stack-mobile   { flex-direction: column !important; }
+  .full-mobile    { width: 100% !important; }
+  .center-mobile  { text-align: center !important; align-items: center !important; }
+
+  /* 그리드 1열로 */
+  .grid-2-col  { grid-template-columns: 1fr !important; }
+  .grid-3-col  { grid-template-columns: 1fr !important; }
+  .hero-grid   { grid-template-columns: 1fr !important; gap: 0 !important; }
+
+  /* 섹션 패딩 */
+  .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* 디테일 카드 이미지 순서 초기화 */
+  .detail-img  { order: 0 !important; min-height: 240px !important; }
+  .detail-text { order: 1 !important; padding: 36px 24px !important; }
+
+  /* 값 카드 */
+  .value-card  { border-right: none !important; border-bottom: 1px solid rgba(201,168,76,0.1) !important; }
+
+  /* sticky bar 패딩 */
+  .sticky-inner { padding: 0 20px !important; }
+}
+
+/* ───── 소형 모바일 (480px 이하) ───── */
+@media (max-width: 480px) {
+  .color-btns { flex-wrap: wrap !important; gap: 8px !important; }
+  .spec-label { width: 90px !important; }
+  .cta-btns   { flex-direction: column !important; width: 100% !important; }
+  .cta-btns a, .cta-btns button { width: 100% !important; justify-content: center !important; }
 }
