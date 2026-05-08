@@ -227,7 +227,7 @@ export default function VHero() {
               transform: "translateX(-50%)",
               width: "80%",
               height: 28,
-              backgroundColor: "#0a1528",
+              backgroundColor: "#c8c3b8",
               borderRadius: "0 0 90px 90px",
             }} />
           </div>
