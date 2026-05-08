@@ -175,7 +175,7 @@ export default function VHero() {
         <div
           ref={imgRef}
           className="hide-mobile"
-          style={{ opacity: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}
+          style={{ opacity: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 20, overflow: "visible", minWidth: 0 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -183,7 +183,7 @@ export default function VHero() {
             alt="VERNY 로고 행택"
             loading="lazy"
             decoding="async"
-            style={{ width: 260, height: 260, objectFit: "cover", objectPosition: "center center", borderRadius: "50%", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))" }}
+            style={{ width: 240, height: 240, objectFit: "cover", objectPosition: "center center", borderRadius: "50%", border: "1px solid rgba(201,168,76,0.3)", filter: "drop-shadow(0 8px 32px rgba(201,168,76,0.15))", flexShrink: 0 }}
           />
           <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", letterSpacing: "0.18em", textAlign: "center", fontStyle: "italic", fontFamily: "var(--font-serif)" }}>
             Trust Begins at the Detail
