@@ -1,25 +1,25 @@
-"use client";
-
-import VNavbar from "@/components/VNavbar";
-import VHero from "@/components/VHero";
-import VProduct from "@/components/VProduct";
-import VDetails from "@/components/VDetails";
-import VValues from "@/components/VValues";
-import VCta from "@/components/VCta";
-import VFooter from "@/components/VFooter";
-import VSticky from "@/components/VSticky";
+import Shell from "@/components/Shell";
+import HeroVideo from "@/components/HeroVideo";
+import Showcase from "@/components/Showcase";
+import Story from "@/components/Story";
+import Detail from "@/components/Detail";
+import Lookbook from "@/components/Lookbook";
+import InstaFeed from "@/components/InstaFeed";
+import OrderCta from "@/components/OrderCta";
+import Marquee from "@/components/fx/Marquee";
 
 export default function Home() {
   return (
-    <>
-      <VNavbar />
-      <VHero />
-      <VProduct />
-      <VDetails />
-      <VValues />
-      <VCta />
-      <VFooter />
-      <VSticky />
-    </>
+    <Shell>
+      <HeroVideo />
+      <Showcase />
+      <Marquee />
+      <Story />
+      <Detail />
+      <Lookbook />
+      <Marquee text="VERNY" sub="Since the Detail" speed={40} />
+      <InstaFeed />
+      <OrderCta />
+    </Shell>
   );
 }

@@ -2,13 +2,22 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0a1528;
-  --navy-mid: #0f1e3a;
-  --gold: #C9A84C;
-  --gold-light: #E2C97E;
-  --cream: #F9F6EF;
-  --font-serif: 'DM Serif Display', Georgia, serif;
+  /* base */
+  --paper: #ffffff;
+  --paper-2: #faf9f6;
+  --ink: #171717;
+  --ink-soft: #6a6a64;
+  --line: #e9e7e0;
+  /* brand */
+  --navy: #1b2a4a;
+  --navy-deep: #14213d;
+  --gold: #b0894f;
+  --gold-light: #c9a24b;
+  /* type */
+  --font-serif: var(--font-serif-next), 'DM Serif Display', Georgia, serif;
   --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* layout */
+  --nav-w: 244px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,59 +26,71 @@ html { scroll-behavior: smooth; height: 100%; }
 
 body {
   font-family: var(--font-body);
-  color: #1a1a1a;
-  background: #fff;
+  color: var(--ink);
+  background: var(--paper);
   min-height: 100%;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--navy); }
+a { color: inherit; text-decoration: none; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-/* ───── 반응형 그리드 ───── */
-.grid-2-col { display: grid; grid-template-columns: 1fr 1fr; }
-.grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); }
-.hero-grid  { display: grid; grid-template-columns: 1fr 1fr; }
+::selection { background: var(--navy); color: #fff; }
 
-/* ───── 태블릿 (1024px 이하) ───── */
-@media (max-width: 1024px) {
-  .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
+/* ───── left-nav shell ───── */
+.shell { min-height: 100vh; }
+.shell-main { margin-left: var(--nav-w); }
+
+.shell-inner { min-height: 100vh; }
+@media (max-width: 900px) { .shell-inner { padding-top: 58px; } }
+
+/* serif helpers */
+.serif { font-family: var(--font-serif); }
+.eyebrow {
+  font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); font-weight: 400;
 }
+.eyebrow-ink { color: var(--ink-soft); }
 
-/* ───── 모바일 (768px 이하) ───── */
-@media (max-width: 768px) {
-  .hide-mobile    { display: none !important; }
-  .show-mobile    { display: block !important; }
-  .stack-mobile   { flex-direction: column !important; }
-  .full-mobile    { width: 100% !important; }
-  .center-mobile  { text-align: center !important; align-items: center !important; }
+/* section rhythm */
+.section { padding: clamp(72px, 9vw, 140px) clamp(24px, 6vw, 96px); }
+.section-narrow { padding: clamp(64px, 7vw, 110px) clamp(24px, 6vw, 96px); }
 
-  /* 그리드 1열로 */
-  .grid-2-col  { grid-template-columns: 1fr !important; }
-  .grid-3-col  { grid-template-columns: 1fr !important; }
-  .hero-grid   { grid-template-columns: 1fr !important; gap: 0 !important; }
+/* reveal (used by framer-motion fallback / css) */
+.reveal { opacity: 0; transform: translateY(24px); }
 
-  /* 섹션 패딩 */
-  .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
-
-  /* 디테일 카드 이미지 순서 초기화 */
-  .detail-img  { order: 0 !important; min-height: 240px !important; }
-  .detail-text { order: 1 !important; padding: 36px 24px !important; }
-
-  /* 값 카드 */
-  .value-card  { border-right: none !important; border-bottom: 1px solid rgba(201,168,76,0.1) !important; }
-
-  /* sticky bar 패딩 */
-  .sticky-inner { padding: 0 20px !important; }
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 15px 30px; border: 1px solid var(--navy); background: var(--navy); color: #fff;
+  transition: background .3s, color .3s, border-color .3s; cursor: pointer;
+  font-family: var(--font-body);
 }
+.btn:hover { background: var(--gold); border-color: var(--gold); }
+.btn-ghost { background: transparent; color: var(--navy); }
+.btn-ghost:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+.btn-gold { background: var(--gold); border-color: var(--gold); }
+.btn-gold:hover { background: var(--navy); border-color: var(--navy); }
 
-/* ───── 소형 모바일 (480px 이하) ───── */
-@media (max-width: 480px) {
-  .color-btns { flex-wrap: wrap !important; gap: 8px !important; }
-  .spec-label { width: 90px !important; }
-  .cta-btns   { flex-direction: column !important; width: 100% !important; }
-  .cta-btns a, .cta-btns button { width: 100% !important; justify-content: center !important; }
+/* grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+/* ───── responsive ───── */
+@media (max-width: 900px) {
+  :root { --nav-w: 0px; }
+  .shell-main { margin-left: 0; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .hide-mobile { display: none !important; }
+}
+@media (max-width: 560px) {
+  .section { padding-left: 20px; padding-right: 20px; }
 }

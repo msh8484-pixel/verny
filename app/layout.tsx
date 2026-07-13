@@ -1,28 +1,36 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond } from "next/font/google";
+import FloatingCta from "@/components/FloatingCta";
+import SmoothScroll from "@/components/fx/SmoothScroll";
 import "./globals.css";
+
+const serif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif-next",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "VERNY — Trust Begins at the Detail",
-  description: "프리미엄 드레스 양말 VERNY. 립조직 8:2, 라이크라 커프밴드, 28cm 정장 양말.",
+  description:
+    "프리미엄 신사 정장 양말 VERNY. 면 70·나일론 25·폴리우레탄 5, FREE 250–280mm, Made in Korea. ㈜베러스.",
   openGraph: {
     title: "VERNY — Trust Begins at the Detail",
-    description: "프리미엄 드레스 양말 VERNY",
+    description: "프리미엄 신사 정장 양말 VERNY — 디테일에서 시작되는 신뢰.",
     type: "website",
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="ko" className={serif.variable}>
+      <body>
+        <SmoothScroll />
+        {children}
+        <FloatingCta />
+      </body>
     </html>
   );
 }
