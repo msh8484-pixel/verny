@@ -8,11 +8,10 @@
 
 export const STORE_URL = "https://smartstore.naver.com/coworkers";
 
-// TODO: 실제 상품 URL로 교체 (예: https://smartstore.naver.com/coworkers/products/1234567890)
 export const SHOP = {
   store: STORE_URL,
-  socks: STORE_URL,   // 낱개 양말 상품 URL
-  giftSet: STORE_URL, // 선물세트 상품 URL
+  socks: "https://smartstore.naver.com/coworkers/products/13659787039",   // 낱개 양말
+  giftSet: "https://smartstore.naver.com/coworkers/products/13659789237", // 선물세트
 };
 
 // 외부 링크 공통 속성 (새 탭 + 보안)
