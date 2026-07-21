@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // 웹앱 URL은 서버 환경변수 ORDER_WEBHOOK_URL 에만 둔다(클라이언트 비노출·CORS 회피).
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
-  if (!body || !body.name || !body.phone) {
+  if (!body || !body.ordererName || !body.ordererPhone) {
     return NextResponse.json({ error: "이름과 연락처는 필수입니다." }, { status: 400 });
   }
 
