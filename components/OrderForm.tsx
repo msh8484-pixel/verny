@@ -11,6 +11,8 @@ const inputStyle: React.CSSProperties = {
   padding: "10px 2px", fontFamily: "var(--font-body)", fontSize: 14,
   fontWeight: 300, background: "none", color: "var(--ink)", outline: "none",
 };
+const labelHead: React.CSSProperties = { fontSize: 12, color: "#555", marginBottom: 8 };
+const req = <span style={{ color: "var(--gold)" }}> *</span>;
 
 function Stepper({ value, onChange, label, price }: { value: number; onChange: (v: number) => void; label: string; price: number }) {
   return (
@@ -30,23 +32,27 @@ function Stepper({ value, onChange, label, price }: { value: number; onChange: (
 
 export default function OrderForm() {
   const [qty, setQty] = useState<Qty>({ set: 0, navy: 0, charcoal: 0, black: 0, bag: 0 });
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [addr, setAddr] = useState("");
-  const [detail, setDetail] = useState("");
-  const [request, setRequest] = useState("");
+  const [ordererName, setOrdererName] = useState("");
+  const [ordererPhone, setOrdererPhone] = useState("");
+  const [sameAsOrderer, setSameAsOrderer] = useState(true);
+  const [recipient, setRecipient] = useState("");
+  const [recipientPhone, setRecipientPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
+  const [message, setMessage] = useState("");
   const [receipt, setReceipt] = useState("안 함");
   const [receiptInfo, setReceiptInfo] = useState("");
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
 
+  const totalQty = qty.set + qty.navy + qty.charcoal + qty.black + qty.bag;
   const total =
     qty.set * PRICE.set +
     (qty.navy + qty.charcoal + qty.black) * PRICE.single +
     qty.bag * PRICE.bag;
 
-  const itemsSummary = [
+  const items = [
     qty.set && `선물세트 ${qty.set}`,
     qty.navy && `낱개(네이비) ${qty.navy}`,
     qty.charcoal && `낱개(차콜) ${qty.charcoal}`,
@@ -57,19 +63,22 @@ export default function OrderForm() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setErr("");
-    if (!name.trim() || !phone.trim()) return setErr("주문자와 연락처를 입력해주세요.");
+    if (!ordererName.trim() || !ordererPhone.trim()) return setErr("주문자와 연락처를 입력해주세요.");
     if (total === 0) return setErr("상품을 1개 이상 선택해주세요.");
-    if (!addr.trim()) return setErr("배송지 주소를 입력해주세요.");
+    const rName = sameAsOrderer ? ordererName : recipient;
+    const rPhone = sameAsOrderer ? ordererPhone : recipientPhone;
+    if (!rName.trim() || !rPhone.trim()) return setErr("수취인 정보를 입력해주세요.");
+    if (!address.trim()) return setErr("배송지 주소를 입력해주세요.");
     setBusy(true);
     try {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name, phone,
-          items: itemsSummary,
-          total,
-          address: addr, detail, request,
+          ordererName, ordererPhone,
+          recipient: rName, recipientPhone: rPhone,
+          address, zip, message,
+          items, qty: totalQty, total,
           receipt, receiptInfo,
         }),
       });
@@ -111,7 +120,7 @@ export default function OrderForm() {
 
         <form onSubmit={submit}>
           {/* 상품 */}
-          <div style={{ marginBottom: 32 }}>
+          <div style={{ marginBottom: 34 }}>
             <div className="eyebrow eyebrow-ink" style={{ marginBottom: 6 }}>상품 선택</div>
             <Stepper label="선물세트 · 3켤레(블랙·네이비·차콜)" price={PRICE.set} value={qty.set} onChange={(v) => setQty({ ...qty, set: v })} />
             <Stepper label="낱개 · 네이비" price={PRICE.single} value={qty.navy} onChange={(v) => setQty({ ...qty, navy: v })} />
@@ -119,28 +128,49 @@ export default function OrderForm() {
             <Stepper label="낱개 · 블랙" price={PRICE.single} value={qty.black} onChange={(v) => setQty({ ...qty, black: v })} />
             <Stepper label="고급 쇼핑백" price={PRICE.bag} value={qty.bag} onChange={(v) => setQty({ ...qty, bag: v })} />
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 16 }}>
-              <span style={{ fontSize: 13, color: "var(--ink-soft)" }}>합계</span>
+              <span style={{ fontSize: 13, color: "var(--ink-soft)" }}>합계 · 총 {totalQty}개</span>
               <span className="serif" style={{ fontSize: 26, color: "var(--navy)" }}>{total.toLocaleString()}<span style={{ fontSize: 13 }}> 원</span></span>
             </div>
           </div>
 
           {/* 주문자 */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "22px 30px", marginBottom: 22 }}>
-            <label><div style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>주문자 <span style={{ color: "var(--gold)" }}>*</span></div>
-              <input style={inputStyle} value={name} onChange={(e) => setName(e.target.value)} placeholder="이름" /></label>
-            <label><div style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>연락처 <span style={{ color: "var(--gold)" }}>*</span></div>
-              <input style={inputStyle} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="010-0000-0000" inputMode="tel" /></label>
-            <label style={{ gridColumn: "1 / -1" }}><div style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>배송지 주소 <span style={{ color: "var(--gold)" }}>*</span></div>
-              <input style={inputStyle} value={addr} onChange={(e) => setAddr(e.target.value)} placeholder="도로명 주소" /></label>
-            <label style={{ gridColumn: "1 / -1" }}><div style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>상세 주소</div>
-              <input style={inputStyle} value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="동 · 호수 등" /></label>
-            <label style={{ gridColumn: "1 / -1" }}><div style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>요청사항</div>
-              <input style={inputStyle} value={request} onChange={(e) => setRequest(e.target.value)} placeholder="예) 부재 시 경비실에 맡겨주세요" /></label>
+          <div className="eyebrow eyebrow-ink" style={{ marginBottom: 14 }}>주문자</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "22px 30px", marginBottom: 24 }}>
+            <label><div style={labelHead}>주문자{req}</div>
+              <input style={inputStyle} value={ordererName} onChange={(e) => setOrdererName(e.target.value)} placeholder="이름" /></label>
+            <label><div style={labelHead}>주문자 연락처{req}</div>
+              <input style={inputStyle} value={ordererPhone} onChange={(e) => setOrdererPhone(e.target.value)} placeholder="010-0000-0000" inputMode="tel" /></label>
+          </div>
+
+          {/* 수취인 */}
+          <div className="eyebrow eyebrow-ink" style={{ marginBottom: 12 }}>받는 분 (수취인)</div>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-soft)", marginBottom: 16, cursor: "pointer" }}>
+            <input type="checkbox" checked={sameAsOrderer} onChange={(e) => setSameAsOrderer(e.target.checked)} />
+            주문자와 동일
+          </label>
+          {!sameAsOrderer && (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "22px 30px", marginBottom: 24 }}>
+              <label><div style={labelHead}>수취인명{req}</div>
+                <input style={inputStyle} value={recipient} onChange={(e) => setRecipient(e.target.value)} placeholder="받는 분 이름" /></label>
+              <label><div style={labelHead}>수취인 연락처{req}</div>
+                <input style={inputStyle} value={recipientPhone} onChange={(e) => setRecipientPhone(e.target.value)} placeholder="010-0000-0000" inputMode="tel" /></label>
+            </div>
+          )}
+
+          {/* 배송지 */}
+          <div className="eyebrow eyebrow-ink" style={{ marginBottom: 14 }}>배송지</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 160px", gap: "22px 30px", marginBottom: 30 }}>
+            <label><div style={labelHead}>주소{req}</div>
+              <input style={inputStyle} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="도로명 주소 + 상세 주소" /></label>
+            <label><div style={labelHead}>우편번호</div>
+              <input style={inputStyle} value={zip} onChange={(e) => setZip(e.target.value)} placeholder="00000" inputMode="numeric" /></label>
+            <label style={{ gridColumn: "1 / -1" }}><div style={labelHead}>배송 메세지</div>
+              <input style={inputStyle} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="예) 부재 시 경비실에 맡겨주세요" /></label>
           </div>
 
           {/* 증빙 */}
           <div style={{ marginBottom: 30 }}>
-            <div style={{ fontSize: 12, color: "#555", marginBottom: 12 }}>증빙 서류</div>
+            <div style={labelHead}>증빙 서류</div>
             <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
               {["안 함", "현금영수증", "세금계산서"].map((o) => (
                 <label key={o} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, color: receipt === o ? "var(--ink)" : "var(--ink-soft)", cursor: "pointer" }}>
