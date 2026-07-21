@@ -1,3 +1,5 @@
+import { SHOP, EXT } from "@/data/shop";
+
 export default function SiteFooter() {
   return (
     <footer style={{ background: "var(--paper-2)", color: "var(--ink-soft)", padding: "60px clamp(24px,6vw,96px)", borderTop: "1px solid var(--line)" }}>
@@ -23,8 +25,8 @@ export default function SiteFooter() {
         <div style={{ display: "flex", gap: 56, flexWrap: "wrap", fontSize: 12.5, letterSpacing: "0.04em" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
             <span style={{ color: "var(--gold)", letterSpacing: "0.14em", fontSize: 11 }}>SHOP</span>
-            <a href="/order">주문서 작성</a>
-            <a href="#">네이버쇼핑 (준비 중)</a>
+            <a href={SHOP.store} {...EXT}>네이버 스마트스토어</a>
+            <a href="/order">세금계산서·단체 문의</a>
             <a href="#">인스타그램</a>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 11, lineHeight: 1.7 }}>

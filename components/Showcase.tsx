@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { type Sock } from "@/data/lookbook";
+import { SHOP, EXT } from "@/data/shop";
 import Reveal from "./Reveal";
 
 const COLORS: { key: Sock; label: string; dot: string; img: string }[] = [
@@ -64,7 +65,7 @@ export default function Showcase() {
               <div><div style={{ color: "var(--navy)" }}>SET</div>3 pairs</div>
             </div>
 
-            <a href="/order" className="btn">Shop</a>
+            <a href={SHOP.socks} {...EXT} className="btn">Shop</a>
           </div>
         </Reveal>
       </div>

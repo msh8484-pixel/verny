@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { SHOP, EXT } from "@/data/shop";
 
 export default function FloatingCta() {
   const [show, setShow] = useState(false);
@@ -33,7 +34,8 @@ export default function FloatingCta() {
   return (
     <motion.a
       ref={ref}
-      href="/order"
+      href={SHOP.store}
+      {...EXT}
       aria-label="구매하기"
       onMouseMove={onMove}
       onMouseLeave={onLeave}

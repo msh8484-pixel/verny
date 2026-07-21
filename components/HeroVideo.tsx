@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { SHOP, EXT } from "@/data/shop";
 
 export default function HeroVideo() {
   const ref = useRef<HTMLElement>(null);
@@ -114,7 +115,7 @@ export default function HeroVideo() {
           className="cta-row"
           style={{ display: "flex", gap: 14, marginTop: 36, flexWrap: "wrap", justifyContent: "center" }}
         >
-          <a href="/order" className="btn btn-gold">Shop</a>
+          <a href={SHOP.store} {...EXT} className="btn btn-gold">Shop</a>
           <a
             href="#product"
             className="btn"
