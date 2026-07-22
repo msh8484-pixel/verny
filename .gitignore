@@ -42,3 +42,4 @@ next-env.d.ts
 
 # generation source assets (large, local only)
 agent-input/
+.env*.local
