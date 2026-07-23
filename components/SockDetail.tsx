@@ -1,127 +1,123 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { type Sock } from "@/data/lookbook";
 import { SHOP, EXT } from "@/data/shop";
 import Reveal from "./Reveal";
 
-const COLORS: { key: Sock; label: string; dot: string; img: string; pantone: string }[] = [
-  { key: "navy", label: "Deep Navy", dot: "#22304f", img: "/sock-navy.webp", pantone: "Cool Gray 11C" },
-  { key: "charcoal", label: "Charcoal", dot: "#484b50", img: "/sock-charcoal.webp", pantone: "Cool Gray 11C" },
-  { key: "black", label: "Black", dot: "#1c1c1e", img: "/sock-black.webp", pantone: "2336C" },
+// 세 색상 공통 구조 — 양말마다 동일하게 표기
+const FEATS: [string, string][] = [
+  ["립 8:2 조직", "종일 흘러내리지 않는 밀착"],
+  ["6cm 커프밴드", "혈류 방해 없는 적정 압박"],
+  ["면 80% 혼방", "하루 종일 뽀송한 감촉"],
 ];
 
-const SPECS: { label: string; value: string }[] = [
-  { label: "조직", value: "립 8:2 — 탄성·형태 유지 황금비율" },
-  { label: "소재", value: "면 80% · 폴리에스터 14% · 라이크라 3% · 나일론 3%" },
-  { label: "커프밴드", value: "라이크라 6cm — 흘러내림 없음" },
-  { label: "길이", value: "28cm — 드레스 최적 길이" },
-  { label: "사이즈", value: "FREE 250–280mm (워싱 포함)" },
-  { label: "컬러", value: "딥네이비 · 차콜 · 블랙" },
-  { label: "제조국", value: "Made in Korea" },
-  { label: "패키징", value: "네이비 박스 · 골드 포일 로고" },
+const COLORS = [
+  {
+    no: "01",
+    label: "Deep Navy",
+    dot: "#22304f",
+    img: "/sock-navy.webp",
+    note: "어떤 슈트에도 어울리는 기본.",
+    pantone: "Cool Gray 11C",
+  },
+  {
+    no: "02",
+    label: "Charcoal",
+    dot: "#484b50",
+    img: "/sock-charcoal.webp",
+    note: "그레이·브라운 슈트와 자연스럽게.",
+    pantone: "Cool Gray 11C",
+  },
+  {
+    no: "03",
+    label: "Black",
+    dot: "#1c1c1e",
+    img: "/sock-black.webp",
+    note: "가장 격식 있는 자리, 포멀웨어에.",
+    pantone: "2336C",
+  },
+];
+
+const SPEC = [
+  { k: "SIZE", v: "FREE 250–280" },
+  { k: "LENGTH", v: "28cm 드레스" },
+  { k: "ORIGIN", v: "Made in Korea" },
+  { k: "SET", v: "3 pairs" },
 ];
 
 export default function SockDetail() {
-  const [color, setColor] = useState<Sock>("navy");
-  const active = COLORS.find((c) => c.key === color)!;
-
   return (
     <>
-      {/* 제품 · 스펙 */}
+      {/* 3 컬러 */}
       <section id="product" className="section" style={{ background: "var(--paper)" }}>
-        <div className="grid-2" style={{ gap: "clamp(32px,5vw,90px)", alignItems: "center", maxWidth: 1120, margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ position: "relative", aspectRatio: "4/5", background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 2, overflow: "hidden" }}>
-              <Image
-                key={active.img}
-                src={active.img}
-                alt={active.label}
-                fill
-                sizes="(max-width: 900px) 90vw, 45vw"
-                style={{ objectFit: "cover", animation: "fade .5s ease" }}
-              />
-              <div style={{ position: "absolute", left: 14, bottom: 14, display: "flex", alignItems: "center", gap: 9, padding: "8px 12px", background: "rgba(255,255,255,0.86)", borderRadius: 2, backdropFilter: "blur(6px)" }}>
-                <span style={{ width: 18, height: 18, borderRadius: 3, background: active.dot, border: "1px solid var(--line)" }} />
-                <span style={{ fontSize: 10.5, letterSpacing: "0.06em", color: "var(--navy)" }}>커프밴드 Pantone {active.pantone}</span>
-              </div>
-            </div>
-          </Reveal>
+        <Reveal>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px,6vw,80px)" }}>
+            <span className="eyebrow">The Socks</span>
+            <h2 className="serif" style={{ fontSize: "clamp(30px,4.4vw,52px)", fontWeight: 500, color: "var(--navy)", margin: "10px 0 0" }}>
+              Three Colors
+            </h2>
+          </div>
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <div>
-              <span className="eyebrow">The Socks</span>
-              <h2 className="serif" style={{ fontSize: "clamp(30px,4.4vw,52px)", fontWeight: 500, color: "var(--navy)", margin: "10px 0 8px" }}>
-                {active.label}
-              </h2>
-              <p style={{ fontSize: 13.5, color: "var(--ink-soft)", letterSpacing: "0.02em", marginBottom: 26 }}>
-                디테일 하나까지 이유가 있는, 신사의 정장 양말.
-              </p>
+        <div style={{ maxWidth: 1080, margin: "0 auto", display: "flex", flexDirection: "column", gap: "clamp(48px,7vw,110px)" }}>
+          {COLORS.map((c, i) => (
+            <Reveal key={c.label} delay={0.05}>
+              <div className={`sock-row grid-2${i % 2 === 1 ? " rev" : ""}`} style={{ gap: "clamp(28px,5vw,72px)", alignItems: "center" }}>
+                <div className="sock-img" style={{ position: "relative", aspectRatio: "4/5", background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 2, overflow: "hidden" }}>
+                  <Image src={c.img} alt={c.label} fill sizes="(max-width: 900px) 90vw, 45vw" style={{ objectFit: "cover" }} />
+                </div>
 
-              {/* 컬러 선택 */}
-              <div style={{ display: "flex", gap: 8, marginBottom: 30 }}>
-                {COLORS.map((c) => (
-                  <button
-                    key={c.key}
-                    onClick={() => setColor(c.key)}
-                    aria-label={c.label}
-                    style={{ width: 84, display: "flex", flexDirection: "column", alignItems: "center", gap: 9, background: "none", border: "none", cursor: "pointer" }}
-                  >
-                    <span
-                      style={{
-                        width: 30, height: 30, borderRadius: "50%", background: c.dot,
-                        outline: color === c.key ? "1px solid var(--gold)" : "1px solid var(--line)",
-                        outlineOffset: 3, transition: "outline-color .2s",
-                      }}
-                    />
-                    <span style={{ fontSize: 10.5, letterSpacing: "0.08em", whiteSpace: "nowrap", color: color === c.key ? "var(--navy)" : "var(--ink-soft)" }}>{c.label}</span>
-                  </button>
-                ))}
-              </div>
+                <div>
+                  <span className="serif" style={{ fontSize: 13, letterSpacing: "0.24em", color: "var(--gold)" }}>{c.no}</span>
+                  <h3 className="serif" style={{ fontSize: "clamp(26px,3.4vw,40px)", fontWeight: 500, color: "var(--navy)", margin: "8px 0 12px" }}>
+                    {c.label}
+                  </h3>
+                  <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--ink-soft)", marginBottom: 20 }}>{c.note}</p>
 
-              {/* 스펙 표 */}
-              <div style={{ borderTop: "1px solid var(--line)", marginBottom: 30 }}>
-                {SPECS.map((s) => (
-                  <div key={s.label} style={{ display: "flex", gap: 16, padding: "11px 0", borderBottom: "1px solid var(--line)" }}>
-                    <span style={{ width: 68, flexShrink: 0, fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", color: "var(--gold)" }}>{s.label}</span>
-                    <span style={{ fontSize: 13, lineHeight: 1.55, color: "var(--ink)" }}>{s.value}</span>
+                  {/* 특징 3줄 — 양말마다 동일 표기 */}
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+                    {FEATS.map(([t, d]) => (
+                      <li key={t} style={{ fontSize: 13, lineHeight: 1.5, color: "var(--ink)" }}>
+                        <b style={{ color: "var(--navy)", fontWeight: 600 }}>{t}</b>
+                        <span style={{ color: "var(--ink-soft)" }}> — {d}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+                    <span style={{ width: 15, height: 15, borderRadius: 3, background: c.dot, border: "1px solid var(--line)" }} />
+                    <span style={{ fontSize: 11, letterSpacing: "0.06em", color: "var(--ink-soft)" }}>Pantone {c.pantone}</span>
                   </div>
-                ))}
+                </div>
               </div>
-
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <a href={SHOP.socks} {...EXT} className="btn btn-gold">Shop</a>
-                <a href={`/viewer?color=${active.key}`} className="btn btn-ghost">3D 보기</a>
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </section>
 
-      {/* 구조 디테일 — 큰 스펙 컷 */}
-      <section className="section" style={{ background: "var(--paper-2)", paddingTop: 0 }}>
-        <Reveal>
-          <figure style={{ maxWidth: 1120, margin: "0 auto" }}>
-            <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", borderRadius: 2, overflow: "hidden", border: "1px solid var(--line)" }}>
-              <Image
-                src="/sock-spec.webp"
-                alt="VERNY 양말 구조 — 립 8:2 조직과 6cm 커프밴드"
-                fill
-                sizes="(max-width: 1120px) 92vw, 1120px"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <figcaption style={{ marginTop: 18, display: "flex", gap: "clamp(20px,4vw,54px)", flexWrap: "wrap", fontSize: 12.5, color: "var(--ink-soft)", letterSpacing: "0.02em" }}>
-              <span><b style={{ color: "var(--navy)", fontWeight: 600 }}>립 8:2 조직</b> — 종일 흘러내리지 않는 밀착</span>
-              <span><b style={{ color: "var(--navy)", fontWeight: 600 }}>6cm 커프밴드</b> — 혈류 방해 없는 적정 압박</span>
-              <span><b style={{ color: "var(--navy)", fontWeight: 600 }}>면 80%</b> — 하루 종일 뽀송한 감촉</span>
-            </figcaption>
-          </figure>
-        </Reveal>
+      {/* 공통 스펙 + 구매 */}
+      <section className="section" style={{ background: "var(--paper-2)", paddingTop: "clamp(48px,6vw,90px)" }}>
+        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(28px,6vw,72px)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", padding: "26px 0" }}>
+            {SPEC.map((s) => (
+              <div key={s.k} style={{ minWidth: 120 }}>
+                <div style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "var(--gold)", marginBottom: 6 }}>{s.k}</div>
+                <div style={{ fontSize: 14, color: "var(--ink)" }}>{s.v}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 30 }}>
+            <a href={SHOP.socks} {...EXT} className="btn btn-gold">Shop</a>
+            <a href="/viewer" className="btn btn-ghost">3D 보기</a>
+          </div>
+        </div>
       </section>
 
-      <style>{`@keyframes fade { from { opacity: .3 } to { opacity: 1 } }`}</style>
+      <style>{`
+        @media (min-width: 901px) {
+          .sock-row.rev .sock-img { order: 2; }
+        }
+      `}</style>
     </>
   );
 }
