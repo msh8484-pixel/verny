@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// 신청서 제출 → Google Apps Script 웹앱으로 전달(구글시트 기록 + 메일 발송).
+// 주문 제출 → Google Apps Script 웹앱으로 전달(구글시트 기록 + 메일 발송).
 // 웹앱 URL은 서버 환경변수 ORDER_WEBHOOK_URL 에만 둔다(클라이언트 비노출·CORS 회피).
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);

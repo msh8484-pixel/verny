@@ -102,7 +102,7 @@ export default function OrderForm() {
       <section className="section" style={{ background: "var(--paper)", textAlign: "center" }}>
         <div style={{ maxWidth: 520, margin: "0 auto" }}>
           <span className="eyebrow">Received</span>
-          <h2 className="serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "var(--navy)", margin: "12px 0 16px" }}>신청이 접수되었습니다</h2>
+          <h2 className="serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "var(--navy)", margin: "12px 0 16px" }}>주문이 접수되었습니다</h2>
           <p style={{ color: "var(--ink-soft)", lineHeight: 1.9, fontSize: 14.5 }}>
             담당자가 확인 후 연락드리겠습니다. 빠른 구매는 네이버 스마트스토어에서도 가능합니다.
           </p>
@@ -119,7 +119,7 @@ export default function OrderForm() {
           <span className="eyebrow">Order Form</span>
           <h2 className="serif" style={{ fontSize: "clamp(28px,4vw,46px)", fontWeight: 500, color: "var(--navy)", marginTop: 10 }}>양말 주문서</h2>
           <p style={{ color: "var(--ink-soft)", fontSize: 13.5, marginTop: 12, lineHeight: 1.7 }}>
-            직접 주문·단체 주문·세금계산서가 필요하시면 아래로 신청해주세요.<br />일반 구매는 네이버 스마트스토어가 더 빠릅니다.
+            직접 주문·단체 주문·세금계산서가 필요하시면 아래로 주문해주세요.<br />일반 구매는 네이버 스마트스토어가 더 빠릅니다.
           </p>
         </div>
 
