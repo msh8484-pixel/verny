@@ -22,7 +22,7 @@ export default function OrderCta() {
               </div>
               <div style={{ width: 1, height: 40, background: "var(--line)" }} />
               <div>
-                <div className="serif" style={{ fontSize: 36, color: "var(--navy)" }}>5,900<span style={{ fontSize: 15 }}> 원</span></div>
+                <div className="serif" style={{ fontSize: 36, color: "var(--navy)" }}>6,900<span style={{ fontSize: 15 }}> 원</span></div>
                 <div style={{ fontSize: 11.5, color: "var(--ink-soft)", letterSpacing: "0.06em" }}>낱개 · per pair</div>
               </div>
             </div>

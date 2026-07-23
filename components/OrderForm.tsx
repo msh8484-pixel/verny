@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SHOP, EXT } from "@/data/shop";
 
 type Qty = { set: number; navy: number; charcoal: number; black: number; bag: number };
-const PRICE = { set: 26900, single: 5900, bag: 2000 };
+const PRICE = { set: 26900, single: 6900, bag: 2000 };
 
 const inputStyle: React.CSSProperties = {
   width: "100%", border: "none", borderBottom: "1px solid var(--line)",
