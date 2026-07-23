@@ -24,6 +24,13 @@
 
 html { scroll-behavior: smooth; height: 100%; }
 
+/* Lenis 스무스 스크롤 필수 스타일 — 없으면 PC 마우스휠에서 스크롤이 걸림 */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 body {
   font-family: var(--font-body);
   color: var(--ink);
