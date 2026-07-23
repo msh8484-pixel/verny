@@ -107,23 +107,34 @@ export default function HeroVideo() {
         >
           Trust Begins at the Detail
         </motion.p>
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="cta-row"
-          style={{ display: "flex", gap: 14, marginTop: 36, flexWrap: "wrap", justifyContent: "center" }}
+      {/* CTA — 영상에 박힌 슬로건(약 61% 지점)을 가리지 않도록 하단에 분리 배치 */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="cta-row"
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: "15vh",
+          display: "flex",
+          gap: 14,
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: "0 24px",
+        }}
+      >
+        <a href={SHOP.store} {...EXT} className="btn btn-gold">Shop</a>
+        <a
+          href="#product"
+          className="btn"
+          style={{ background: "transparent", borderColor: "rgba(255,255,255,0.6)", color: "#fff" }}
         >
-          <a href={SHOP.store} {...EXT} className="btn btn-gold">Shop</a>
-          <a
-            href="#product"
-            className="btn"
-            style={{ background: "transparent", borderColor: "rgba(255,255,255,0.6)", color: "#fff" }}
-          >
-            Explore
-          </a>
-        </motion.div>
+          Explore
+        </a>
       </motion.div>
 
       {/* scroll cue */}
