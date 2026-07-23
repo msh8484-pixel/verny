@@ -72,7 +72,7 @@ export const STUDIO = {
 export const SPEC = {
   name: "신사 정장 양말",
   size: "FREE (250–280mm)",
-  blend: "면 70 · 나일론 25 · 폴리우레탄 5",
+  blend: "면 80 · 폴리에스터 14 · 라이크라 3 · 나일론 3",
   origin: "MADE IN KOREA",
   maker: "㈜베러스 (BETTERUS)",
   colors: ["black", "navy", "charcoal"] as Sock[],

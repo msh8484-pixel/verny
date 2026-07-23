@@ -4,7 +4,7 @@ import { STUDIO } from "@/data/lookbook";
 import Reveal from "./Reveal";
 import ParallaxImage from "./fx/ParallaxImage";
 
-const SPECS = ["Cotton 70 · Nylon 25 · PU 5", "Free 250–280 mm", "3 pairs · Gift box", "Made in Korea"];
+const SPECS = ["Cotton 80 · Polyester 14 · Lycra 3 · Nylon 3", "Free 250–280 mm", "3 pairs · Gift box", "Made in Korea"];
 
 export default function Story() {
   return (

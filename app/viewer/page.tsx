@@ -141,7 +141,7 @@ function ViewerContent() {
       {/* 스펙 */}
       <div style={{ marginTop: 28, padding: "16px 20px", border: "1px solid rgba(201,168,76,0.1)", borderRadius: 6, width: "100%", maxWidth: 600 }}>
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-          {[["소재", "면 70% · 나일론 25% · 폴리우레탄 5%"], ["조직", "립 8:2 구조"], ["사이즈", "250~280mm"], ["생산", "MADE IN KOREA"]].map(([k, v]) => (
+          {[["소재", "면 80% · 폴리에스터 14% · 라이크라 3% · 나일론 3%"], ["조직", "립 8:2 구조"], ["사이즈", "250~280mm"], ["생산", "MADE IN KOREA"]].map(([k, v]) => (
             <div key={k}>
               <p style={{ fontSize: 9, color: "#C9A84C", fontWeight: 700, letterSpacing: "0.1em", marginBottom: 3 }}>{k}</p>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>{v}</p>

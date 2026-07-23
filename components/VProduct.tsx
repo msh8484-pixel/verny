@@ -169,7 +169,7 @@ export default function VProduct() {
             <div style={{ display: "flex", flexDirection: "column" }}>
               {[
                 { label: "조직", value: "립 8:2 — 탄성·형태 유지 황금비율" },
-                { label: "소재", value: "면 70% · 나일론 25% · 폴리우레탄 5%" },
+                { label: "소재", value: "면 80% · 폴리에스터 14% · 라이크라 3% · 나일론 3%" },
                 { label: "커프밴드", value: "라이크라 6cm — 흘러내림 없음" },
                 { label: "길이", value: "28cm (드레스 최적 길이)" },
                 { label: "사이즈", value: "갑종 기준 250~280mm (워싱 포함)" },

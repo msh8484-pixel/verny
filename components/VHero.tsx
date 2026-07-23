@@ -123,7 +123,7 @@ export default function VHero() {
               opacity: 0,
             }}
           >
-            면 70%, 나일론 25%, 폴리우레탄 5%.<br />
+            면 80%, 폴리에스터 14%, 라이크라 3%, 나일론 3%.<br />
             립조직 8:2, 라이크라 커프밴드 6cm, 28cm.<br />
             단 하나의 디테일도 타협하지 않았습니다.
           </p>
@@ -182,7 +182,7 @@ export default function VHero() {
             ref={badgesRef}
             style={{ display: "flex", gap: 20, marginTop: 52, opacity: 0, flexWrap: "wrap" }}
           >
-            {["MADE IN KOREA", "면 70% · 나일론 25%", "250~280mm"].map((b) => (
+            {["MADE IN KOREA", "면 80% · 폴리에스터 14%", "250~280mm"].map((b) => (
               <div key={b} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ width: 3, height: 3, backgroundColor: "#C9A84C", borderRadius: "50%" }} />
                 <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", fontWeight: 600 }}>
