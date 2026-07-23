@@ -112,7 +112,7 @@ export default function OrderForm() {
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <span className="eyebrow">Order Form</span>
-          <h2 className="serif" style={{ fontSize: "clamp(28px,4vw,46px)", fontWeight: 500, color: "var(--navy)", marginTop: 10 }}>양말 신청서</h2>
+          <h2 className="serif" style={{ fontSize: "clamp(28px,4vw,46px)", fontWeight: 500, color: "var(--navy)", marginTop: 10 }}>양말 주문서</h2>
           <p style={{ color: "var(--ink-soft)", fontSize: 13.5, marginTop: 12, lineHeight: 1.7 }}>
             직접 주문·단체 주문·세금계산서가 필요하시면 아래로 신청해주세요.<br />일반 구매는 네이버 스마트스토어가 더 빠릅니다.
           </p>
