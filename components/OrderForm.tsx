@@ -4,7 +4,8 @@ import { useState } from "react";
 import { SHOP, EXT } from "@/data/shop";
 
 type Qty = { set: number; navy: number; charcoal: number; black: number; bag: number };
-const PRICE = { set: 26900, single: 6900, bag: 2000 };
+const PRICE = { set: 26900, single: 6900, singleBulk: 5900, bag: 2000 };
+const BULK_QTY = 10; // 낱개 합계 10개 이상이면 개당 자동 할인
 
 const inputStyle: React.CSSProperties = {
   width: "100%", border: "none", borderBottom: "1px solid var(--line)",
@@ -46,11 +47,15 @@ export default function OrderForm() {
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
 
+  const singleQty = qty.navy + qty.charcoal + qty.black;
+  const bulkSingle = singleQty >= BULK_QTY;           // 낱개 10개 이상 자동 할인
+  const unitSingle = bulkSingle ? PRICE.singleBulk : PRICE.single;
   const totalQty = qty.set + qty.navy + qty.charcoal + qty.black + qty.bag;
   const total =
     qty.set * PRICE.set +
-    (qty.navy + qty.charcoal + qty.black) * PRICE.single +
+    singleQty * unitSingle +
     qty.bag * PRICE.bag;
+  const saved = singleQty * (PRICE.single - unitSingle);
 
   const items = [
     qty.set && `선물세트 ${qty.set}`,
@@ -122,12 +127,21 @@ export default function OrderForm() {
           {/* 상품 */}
           <div style={{ marginBottom: 34 }}>
             <div className="eyebrow eyebrow-ink" style={{ marginBottom: 6 }}>상품 선택</div>
+            <p style={{ fontSize: 11.5, color: "var(--gold)", margin: "0 0 12px", lineHeight: 1.6 }}>
+              ※ 낱개 10개 이상 구매 시 개당 5,900원으로 자동 할인됩니다.
+            </p>
             <Stepper label="선물세트 · 3켤레(블랙·네이비·차콜)" price={PRICE.set} value={qty.set} onChange={(v) => setQty({ ...qty, set: v })} />
             <Stepper label="낱개 · 네이비" price={PRICE.single} value={qty.navy} onChange={(v) => setQty({ ...qty, navy: v })} />
             <Stepper label="낱개 · 차콜" price={PRICE.single} value={qty.charcoal} onChange={(v) => setQty({ ...qty, charcoal: v })} />
             <Stepper label="낱개 · 블랙" price={PRICE.single} value={qty.black} onChange={(v) => setQty({ ...qty, black: v })} />
             <Stepper label="고급 쇼핑백" price={PRICE.bag} value={qty.bag} onChange={(v) => setQty({ ...qty, bag: v })} />
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 16 }}>
+            {saved > 0 && (
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, color: "var(--gold)", marginTop: 14 }}>
+                <span>낱개 10개 이상 할인 (개당 5,900원)</span>
+                <span>−{saved.toLocaleString()}원</span>
+              </div>
+            )}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: saved > 0 ? 8 : 16 }}>
               <span style={{ fontSize: 13, color: "var(--ink-soft)" }}>합계 · 총 {totalQty}개</span>
               <span className="serif" style={{ fontSize: 26, color: "var(--navy)" }}>{total.toLocaleString()}<span style={{ fontSize: 13 }}> 원</span></span>
             </div>
@@ -188,7 +202,7 @@ export default function OrderForm() {
           {err && <p style={{ color: "#c0392b", fontSize: 13, marginBottom: 14 }}>{err}</p>}
 
           <button type="submit" disabled={busy} className="btn btn-gold" style={{ width: "100%", height: 54, opacity: busy ? 0.6 : 1 }}>
-            {busy ? "접수 중…" : "신청서 제출"}
+            {busy ? "접수 중…" : "주문하기"}
           </button>
           <p style={{ fontSize: 11.5, color: "var(--ink-soft)", textAlign: "center", marginTop: 14, lineHeight: 1.7 }}>
             제출하면 담당자에게 전달되고 확인 후 연락드립니다.<br />결제(무통장/카드)는 확인 연락 시 안내됩니다.
