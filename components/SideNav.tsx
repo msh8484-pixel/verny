@@ -5,12 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { no: "01", label: "Socks", href: "/" },
-  { no: "02", label: "Story", href: "/story" },
-  { no: "03", label: "Details", href: "/details" },
-  { no: "04", label: "Lookbook", href: "/lookbook" },
-  { no: "05", label: "Instagram", href: "/instagram" },
-  { no: "06", label: "Order", href: "/order" },
+  { no: "01", label: "Home", href: "/" },
+  { no: "02", label: "Socks", href: "/socks" },
+  { no: "03", label: "Story", href: "/story" },
+  { no: "04", label: "Details", href: "/details" },
+  { no: "05", label: "Lookbook", href: "/lookbook" },
+  { no: "06", label: "Instagram", href: "/instagram" },
+  { no: "07", label: "Order", href: "/order" },
 ];
 
 function Wordmark({ size = 26 }: { size?: number }) {
