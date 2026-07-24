@@ -16,7 +16,7 @@ const COLORS = [
     no: "01",
     label: "Deep Navy",
     dot: "#22304f",
-    img: "/sock-navy.webp",
+    img: "/lib/socks/u-navy.webp",
     note: "어떤 슈트에도 어울리는 기본.",
     pantone: "Cool Gray 11C",
   },
@@ -24,7 +24,7 @@ const COLORS = [
     no: "02",
     label: "Charcoal",
     dot: "#484b50",
-    img: "/sock-charcoal.webp",
+    img: "/lib/socks/u-charcoal2.webp",
     note: "그레이·브라운 슈트와 자연스럽게.",
     pantone: "Cool Gray 11C",
   },
@@ -32,7 +32,7 @@ const COLORS = [
     no: "03",
     label: "Black",
     dot: "#1c1c1e",
-    img: "/sock-black.webp",
+    img: "/lib/socks/u-black.webp",
     note: "가장 격식 있는 자리, 포멀웨어에.",
     pantone: "2336C",
   },
@@ -63,7 +63,7 @@ export default function SockDetail() {
           {COLORS.map((c, i) => (
             <Reveal key={c.label} delay={0.05}>
               <div className={`sock-row grid-2${i % 2 === 1 ? " rev" : ""}`} style={{ gap: "clamp(28px,5vw,72px)", alignItems: "center" }}>
-                <div className="sock-img" style={{ position: "relative", aspectRatio: "4/5", background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 2, overflow: "hidden" }}>
+                <div className="sock-img" style={{ position: "relative", aspectRatio: "4/5", background: "#ffffff", border: "1px solid var(--line)", borderRadius: 2, overflow: "hidden" }}>
                   <Image src={c.img} alt={c.label} fill sizes="(max-width: 900px) 90vw, 45vw" style={{ objectFit: "cover" }} />
                 </div>
 
