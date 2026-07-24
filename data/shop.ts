@@ -8,10 +8,13 @@
 
 export const STORE_URL = "https://smartstore.naver.com/coworkers";
 
+// 세트·낱개를 구분하지 않고, 둘 다 보이는 스토어 홈으로 모든 구매 링크를 통일한다.
+// (개별 상품 딥링크를 다시 쓰고 싶으면 buy 값만 해당 상품 URL로 바꾸면 됨)
 export const SHOP = {
   store: STORE_URL,
-  socks: "https://smartstore.naver.com/coworkers/products/13659787039",   // 낱개 양말
-  giftSet: "https://smartstore.naver.com/coworkers/products/13659789237", // 선물세트
+  buy: STORE_URL,      // 대표 구매 링크 — 세트·낱개 모두 보이는 페이지
+  socks: STORE_URL,    // (구분 없이 동일 페이지)
+  giftSet: STORE_URL,  // (구분 없이 동일 페이지)
 };
 
 // 외부 링크 공통 속성 (새 탭 + 보안)
