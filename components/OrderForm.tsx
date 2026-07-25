@@ -39,8 +39,13 @@ export default function OrderForm() {
   const [taxEmail, setTaxEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [bad, setBad] = useState<Record<string, boolean>>({});
   const [done, setDone] = useState<null | { ordNo: string; total: number }>(null);
   const formRef = useRef<HTMLDivElement>(null);
+  const detailRef = useRef<HTMLInputElement>(null);
+
+  const badCls = (k: string) => "inp" + (bad[k] ? " bad" : "");
+  const clearBad = (k: string) => setBad((p) => (p[k] ? (() => { const n = { ...p }; delete n[k]; return n; })() : p));
 
   // 다음 우편번호 스크립트 로드
   useEffect(() => {
@@ -77,6 +82,9 @@ export default function OrderForm() {
       oncomplete: (data: { zonecode: string; roadAddress?: string; jibunAddress?: string }) => {
         setZip(data.zonecode);
         setRoad(data.roadAddress || data.jibunAddress || "");
+        clearBad("addr");
+        // 주소 채워지면 상세주소 입력칸으로 자동 이동
+        setTimeout(() => detailRef.current?.focus(), 60);
       },
     }).open();
   }
@@ -95,11 +103,35 @@ export default function OrderForm() {
 
   async function submit() {
     setErr("");
-    if (units === 0) return setErr("상품을 먼저 담아주세요.");
-    if (!ordName.trim() || !ordTel.trim()) return setErr("주문자와 연락처를 입력해주세요.");
+    if (units === 0) { setErr("상품을 먼저 담아주세요."); return; }
+
+    // 필수 항목 검증 — 누락/형식 오류 시 해당 칸 표시 후 제출 차단
+    const b: Record<string, boolean> = {};
+    if (!ordName.trim()) b.ordName = true;
+    if (!validTel(ordTel)) b.ordTel = true;
+    if (!same) {
+      if (!rcpName.trim()) b.rcpName = true;
+      if (!validTel(rcpTel)) b.rcpTel = true;
+    }
+    if (!zip.trim() || !road.trim()) b.addr = true;
+    if (!detail.trim()) b.detail = true;
+    if (proof === "cash" && !cashNo.trim()) b.cashNo = true;
+    if (proof === "tax") {
+      if (!taxBiz.trim()) b.taxBiz = true;
+      if (!taxName.trim()) b.taxName = true;
+      if (!validEmail(taxEmail)) b.taxEmail = true;
+    }
+    if (Object.keys(b).length) {
+      setBad(b);
+      setErr("빨간 테두리로 표시된 필수 항목을 확인해주세요.");
+      setTimeout(() => {
+        const el = formRef.current?.querySelector<HTMLElement>(".inp.bad, .addr-row.bad .inp");
+        if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.focus({ preventScroll: true }); }
+      }, 40);
+      return;
+    }
+    setBad({});
     const rN = same ? ordName : rcpName, rT = same ? ordTel : rcpTel;
-    if (!rN.trim() || !rT.trim()) return setErr("수취인 정보를 입력해주세요.");
-    if (!road.trim() || !detail.trim()) return setErr("배송지 주소를 입력해주세요.");
 
     const proofMap: Record<string, string> = { none: "선택 안 함", cash: "현금영수증", tax: "세금계산서" };
     let pd = "";
@@ -137,6 +169,7 @@ export default function OrderForm() {
     setOrdName(""); setOrdTel(""); setSame(false); setRcpName(""); setRcpTel("");
     setZip(""); setRoad(""); setDetail(""); setMemo(""); setProof("none");
     setCashNo(""); setTaxBiz(""); setTaxName(""); setTaxEmail(""); setDone(null);
+    setErr(""); setBad({});
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -260,26 +293,26 @@ export default function OrderForm() {
           <div className="sec-head"><div><div className="sec-kicker">Delivery</div><h2 className="sec-title">주문 · 배송 정보</h2></div><div className="sec-step">02 / 02</div></div>
 
           <div className="field row">
-            <div><label className="lb">주문자 <span className="req">*</span></label><input className="inp" value={ordName} onChange={(e) => setOrdName(e.target.value)} placeholder="이름" /></div>
-            <div><label className="lb">주문자 연락처 <span className="req">*</span></label><input className="inp" value={ordTel} onChange={(e) => setOrdTel(e.target.value)} inputMode="tel" placeholder="010-0000-0000" /></div>
+            <div><label className="lb">주문자 <span className="req">*</span></label><input className={badCls("ordName")} value={ordName} onChange={(e) => { setOrdName(e.target.value); clearBad("ordName"); }} placeholder="이름" /></div>
+            <div><label className="lb">주문자 연락처 <span className="req">*</span></label><input className={badCls("ordTel")} value={ordTel} onChange={(e) => { setOrdTel(e.target.value); clearBad("ordTel"); }} inputMode="tel" placeholder="010-0000-0000" /></div>
           </div>
 
           <label className="same-check"><input type="checkbox" checked={same} onChange={(e) => setSame(e.target.checked)} /> 수취인이 주문자와 동일합니다</label>
 
           {!same && (
             <div className="field row">
-              <div><label className="lb">수취인 <span className="req">*</span></label><input className="inp" value={rcpName} onChange={(e) => setRcpName(e.target.value)} placeholder="받는 분" /></div>
-              <div><label className="lb">수취인 연락처 <span className="req">*</span></label><input className="inp" value={rcpTel} onChange={(e) => setRcpTel(e.target.value)} inputMode="tel" placeholder="010-0000-0000" /></div>
+              <div><label className="lb">수취인 <span className="req">*</span></label><input className={badCls("rcpName")} value={rcpName} onChange={(e) => { setRcpName(e.target.value); clearBad("rcpName"); }} placeholder="받는 분" /></div>
+              <div><label className="lb">수취인 연락처 <span className="req">*</span></label><input className={badCls("rcpTel")} value={rcpTel} onChange={(e) => { setRcpTel(e.target.value); clearBad("rcpTel"); }} inputMode="tel" placeholder="010-0000-0000" /></div>
             </div>
           )}
 
           <div className="field"><label className="lb">배송지 주소 <span className="req">*</span></label>
-            <div className="addr-row">
-              <input className="inp" value={zip} placeholder="우편번호" readOnly onClick={openAddr} style={{ flex: 1 }} />
+            <div className={"addr-row" + (bad.addr ? " bad" : "")}>
+              <input className={badCls("addr")} value={zip} placeholder="우편번호" readOnly onClick={openAddr} style={{ flex: 1 }} />
               <button type="button" className="addr-btn" onClick={openAddr}>주소 검색</button>
             </div>
-            <input className="inp" value={road} placeholder="주소 검색 버튼을 눌러주세요" readOnly onClick={openAddr} style={{ marginTop: 10 }} />
-            <input className="inp" value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="상세주소 (동·호수 등)" style={{ marginTop: 10 }} />
+            <input className={badCls("addr")} value={road} placeholder="주소 검색 버튼을 눌러주세요" readOnly onClick={openAddr} style={{ marginTop: 10 }} />
+            <input ref={detailRef} className={badCls("detail")} value={detail} onChange={(e) => { setDetail(e.target.value); clearBad("detail"); }} placeholder="상세주소 (동·호수 등)" style={{ marginTop: 10 }} />
           </div>
 
           <div className="field"><label className="lb">배송 요청사항</label><input className="inp" value={memo} onChange={(e) => setMemo(e.target.value)} placeholder="예: 부재 시 문 앞, 배송 전 연락 등" /></div>
@@ -289,11 +322,11 @@ export default function OrderForm() {
               <option value="none">선택 안 함</option><option value="cash">현금영수증</option><option value="tax">세금계산서</option>
             </select>
           </div>
-          {proof === "cash" && <div className="field"><label className="lb">현금영수증 발급 번호</label><input className="inp" value={cashNo} onChange={(e) => setCashNo(e.target.value)} inputMode="numeric" placeholder="휴대폰번호 또는 사업자번호" /></div>}
-          {proof === "tax" && <div className="field"><label className="lb">세금계산서 정보</label>
-            <input className="inp" value={taxBiz} onChange={(e) => setTaxBiz(e.target.value)} placeholder="사업자등록번호" inputMode="numeric" style={{ marginBottom: 10 }} />
-            <input className="inp" value={taxName} onChange={(e) => setTaxName(e.target.value)} placeholder="상호 / 대표자" style={{ marginBottom: 10 }} />
-            <input className="inp" value={taxEmail} onChange={(e) => setTaxEmail(e.target.value)} placeholder="계산서 수신 이메일" inputMode="email" />
+          {proof === "cash" && <div className="field"><label className="lb">현금영수증 발급 번호 <span className="req">*</span></label><input className={badCls("cashNo")} value={cashNo} onChange={(e) => { setCashNo(e.target.value); clearBad("cashNo"); }} inputMode="numeric" placeholder="휴대폰번호 또는 사업자번호" /></div>}
+          {proof === "tax" && <div className="field"><label className="lb">세금계산서 정보 <span className="req">*</span></label>
+            <input className={badCls("taxBiz")} value={taxBiz} onChange={(e) => { setTaxBiz(e.target.value); clearBad("taxBiz"); }} placeholder="사업자등록번호" inputMode="numeric" style={{ marginBottom: 10 }} />
+            <input className={badCls("taxName")} value={taxName} onChange={(e) => { setTaxName(e.target.value); clearBad("taxName"); }} placeholder="상호 / 대표자" style={{ marginBottom: 10 }} />
+            <input className={badCls("taxEmail")} value={taxEmail} onChange={(e) => { setTaxEmail(e.target.value); clearBad("taxEmail"); }} placeholder="계산서 수신 이메일" inputMode="email" />
           </div>}
 
           {err && <p style={{ color: "#c0392b", fontSize: 13, margin: "6px 0 12px" }}>{err}</p>}
@@ -343,6 +376,8 @@ export default function OrderForm() {
 }
 
 function ymd() { const d = new Date(); return `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`; }
+function validTel(v: string) { return /^0\d{1,2}-?\d{3,4}-?\d{4}$/.test(v.replace(/\s/g, "")); }
+function validEmail(v: string) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
 
 // vorder CSS — 사이트와 충돌 방지 위해 .vord 하위로 스코프 (전역 리셋/자체 hero·foot·splash 제외).
 const vordCss = `
@@ -407,6 +442,8 @@ const vordCss = `
 .vord label.lb .req{color:var(--gold-deep);}
 .vord .inp{width:100%;background:var(--paper-2);border:1px solid var(--line-2);border-radius:11px;padding:14px 15px;font-size:16px;transition:border-color .2s,background .2s;}
 .vord .inp:focus{outline:none;border-color:var(--gold);background:#fff;}
+.vord .inp.bad{border-color:#d64541;background:#fff6f5;}
+.vord .inp.bad:focus{border-color:#d64541;}
 .vord select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238d887b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
 .vord input.inp[readonly]{background:var(--paper-2);cursor:pointer;}
 .vord .same-check{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);cursor:pointer;margin:-4px 0 14px;user-select:none;}
