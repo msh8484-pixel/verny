@@ -10,6 +10,8 @@ import OrderCta from "@/components/OrderCta";
 export default function Home() {
   return (
     <Shell>
+      {/* 홈 히어로 포스터 = LCP 요소. 고우선 프리로드로 첫 페인트 앞당김 */}
+      <link rel="preload" as="image" href="/hero-ad.jpg" fetchPriority="high" />
       <HeroVideo />
       <Showcase />
       <Story />

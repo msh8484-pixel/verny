@@ -1,5 +1,5 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import "tailwindcss";
+/* Pretendard는 layout.tsx의 <link>(variable dynamic-subset)로 로드 — 렌더 블로킹 @import 제거 */
 
 :root {
   /* base */
@@ -15,7 +15,7 @@
   --gold-light: #c9a24b;
   /* type */
   --font-serif: var(--font-serif-next), 'DM Serif Display', Georgia, serif;
-  --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   /* layout */
   --nav-w: 244px;
 }
