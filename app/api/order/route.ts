@@ -16,7 +16,13 @@ async function sendOrderMails(body: Record<string, unknown>) {
     ORDER_MAILS.map(async (to) => {
       const res = await fetch(`https://formsubmit.co/ajax/${to}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          // FormSubmit은 Origin/Referer 없는 요청을 거부한다 — 서버 호출에도 필수
+          Origin: "https://verny-beta.vercel.app",
+          Referer: "https://verny-beta.vercel.app/order",
+        },
         body: JSON.stringify({ _subject: subject, 주문내용: detail }),
       });
       const j = await res.json().catch(() => null);
