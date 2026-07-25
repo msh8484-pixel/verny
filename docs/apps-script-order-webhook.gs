@@ -1,4 +1,6 @@
-// VERNY 주문 웹훅 — 구글 시트 기록 + 메일 2곳 동시 발송
+// VERNY 주문 웹훅 — 구글 시트 기록 전용
+// (알림 메일 2곳 발송은 사이트 서버(/api/order)가 담당 — 여기서 또 보내면 중복이라 뺐음)
+//
 // 사용법: 주문 시트를 소유한 구글 계정으로 시트 열기 → 확장 프로그램 → Apps Script
 //        → 기존 doPost 전체를 이 코드로 교체 → 저장
 //        → 배포 → "배포 관리" → 연필(수정) → 버전: "새 버전" → 배포
@@ -6,10 +8,7 @@
 //
 // 기존 PDF(실행서) 버전과의 차이:
 //  1) 사이트가 보내는 JSON 형식을 정상 파싱 (기존 e.parameter만 읽던 버그 수정 — 빈 행 방지)
-//  2) 주문이 오면 아래 두 메일로 동시에 알림 발송
-//  3) 시트 뒤쪽에 합계·입금자·주문번호·접수시각 열 추가 (앞 11열 택배 발주양식은 그대로 유지)
-
-var NOTIFY_EMAILS = ['verny260701@gmail.com', 'heegeun84@gmail.com'];
+//  2) 시트 뒤쪽에 합계·입금자·주문번호·접수시각 열 추가 (앞 11열 택배 발주양식은 그대로 유지)
 
 function doPost(e) {
   try {
@@ -44,13 +43,6 @@ function doPost(e) {
       p.ordNo || '',
       p.at || new Date(),
     ]);
-
-    var subject = '[VERNY 주문] ' + (p.ordererName || p.senderName || '이름없음')
-      + (p.total ? ' · ' + p.total : '');
-    var body = p.detail || JSON.stringify(p, null, 2);
-    NOTIFY_EMAILS.forEach(function (addr) {
-      try { MailApp.sendEmail(addr, subject, body); } catch (err) {}
-    });
 
     return ContentService.createTextOutput('ok');
   } catch (err) {
