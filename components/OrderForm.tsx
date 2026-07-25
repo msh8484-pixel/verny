@@ -68,11 +68,6 @@ export default function OrderForm() {
   const ship = units === 0 ? 0 : anyBulk ? 0 : SHIP_FEE;
   const total = goods + ship;
 
-  // 수취인 = 주문자 동일 동기화
-  useEffect(() => {
-    if (same) { setRcpName(ordName); setRcpTel(ordTel); }
-  }, [same, ordName, ordTel]);
-
   const step = (k: keyof Qty, d: number) => setQty((q) => ({ ...q, [k]: Math.max(0, q[k] + d) }));
   const setQ = (k: keyof Qty, v: number) => setQty((q) => ({ ...q, [k]: Math.max(0, Math.min(9999, v || 0)) }));
 
@@ -173,14 +168,10 @@ export default function OrderForm() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const Stepper = ({ k, aria }: { k: keyof Qty; aria: string }) => (
-    <div className="stepper">
-      <button type="button" onClick={() => step(k, -1)}>−</button>
-      <input type="number" inputMode="numeric" min={0} value={qty[k]} aria-label={aria}
-        onChange={(e) => setQ(k, parseInt(e.target.value))} onBlur={(e) => (e.target.value = String(qty[k]))} />
-      <button type="button" onClick={() => step(k, 1)}>+</button>
-    </div>
-  );
+  const stepProps = (k: keyof Qty, aria: string) => ({
+    value: qty[k], aria,
+    onDec: () => step(k, -1), onInc: () => step(k, 1), onSet: (v: number) => setQ(k, v),
+  });
 
   return (
     <div className="vord">
@@ -242,7 +233,7 @@ export default function OrderForm() {
                 <div className={"deal" + (setBulk ? " on" : "")}><span className="star">{setBulk ? "✓" : "★"}</span> {setBulk ? <>세트당 <b>{PRICE.bulk.set.toLocaleString()}원</b> 자동 할인 적용중</> : <>10세트 이상 구매시 세트당 <b>{PRICE.bulk.set.toLocaleString()}원</b>으로 자동 할인</>}</div>
               </div>
             </div>
-            <div className="p-foot"><Stepper k="set" aria="선물세트 수량" /><div className={"p-line" + (qty.set === 0 ? " zero" : "")}>{won(qty.set * setUnit)}</div></div>
+            <div className="p-foot"><Stepper {...stepProps("set", "선물세트 수량")} /><div className={"p-line" + (qty.set === 0 ? " zero" : "")}>{won(qty.set * setUnit)}</div></div>
           </article>
 
           <article className={"product" + (singles > 0 ? " active" : "")}>
@@ -257,7 +248,7 @@ export default function OrderForm() {
             </div>
             <div className="colors">
               {([["black", "블랙", "BLACK", "sw-black"], ["navy", "딥네이비", "DEEP NAVY", "sw-navy"], ["charcoal", "차콜", "CHARCOAL", "sw-charcoal"]] as const).map(([k, ko, en, sw]) => (
-                <div className="crow" key={k}><span className={"swatch " + sw}></span><span className="cn">{ko} <small>{en}</small></span><Stepper k={k} aria={`${ko} 수량`} /></div>
+                <div className="crow" key={k}><span className={"swatch " + sw}></span><span className="cn">{ko} <small>{en}</small></span><Stepper {...stepProps(k, `${ko} 수량`)} /></div>
               ))}
             </div>
             <div className="p-foot"><div className="lbl">{singles}족 선택</div><div className={"p-line" + (singles === 0 ? " zero" : "")}>{won(singles * singleUnit)}</div></div>
@@ -272,7 +263,7 @@ export default function OrderForm() {
                 <div className="p-price"><span className="now">2,000<span className="won">원</span></span><span style={{ fontSize: 11, color: "var(--muted)" }}>/ 개</span></div>
               </div>
             </div>
-            <div className="p-foot"><Stepper k="bag" aria="쇼핑백 수량" /><div className={"p-line" + (qty.bag === 0 ? " zero" : "")}>{won(qty.bag * PRICE.bulk.bag)}</div></div>
+            <div className="p-foot"><Stepper {...stepProps("bag", "쇼핑백 수량")} /><div className={"p-line" + (qty.bag === 0 ? " zero" : "")}>{won(qty.bag * PRICE.bulk.bag)}</div></div>
           </article>
         </section>
 
@@ -371,6 +362,17 @@ export default function OrderForm() {
       )}
 
       <style>{vordCss}</style>
+    </div>
+  );
+}
+
+function Stepper({ value, aria, onDec, onInc, onSet }: { value: number; aria: string; onDec: () => void; onInc: () => void; onSet: (v: number) => void }) {
+  return (
+    <div className="stepper">
+      <button type="button" onClick={onDec} aria-label="수량 감소">−</button>
+      <input type="number" inputMode="numeric" min={0} value={value} aria-label={aria}
+        onChange={(e) => onSet(parseInt(e.target.value))} />
+      <button type="button" onClick={onInc} aria-label="수량 증가">+</button>
     </div>
   );
 }

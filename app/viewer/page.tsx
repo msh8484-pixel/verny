@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 const COLORS = [
   { id: "navy",     label: "다크네이비", hex: "#1B2D4F", img: "/sock-navy-views.webp" },
@@ -19,12 +20,6 @@ function ViewerContent() {
     return idx >= 0 ? idx : 0;
   });
   const [zoom, setZoom] = useState<number | null>(null);
-
-  useEffect(() => {
-    const colorId = searchParams.get("color");
-    const idx = COLORS.findIndex((c) => c.id === colorId);
-    if (idx >= 0) setActive(idx);
-  }, [searchParams]);
 
   const c = COLORS[active];
 
@@ -150,9 +145,9 @@ function ViewerContent() {
         </div>
       </div>
 
-      <a href="/" style={{ marginTop: 36, fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none", letterSpacing: "0.1em" }}>
+      <Link href="/" style={{ marginTop: 36, fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none", letterSpacing: "0.1em" }}>
         ← 홈으로
-      </a>
+      </Link>
     </div>
   );
 }
