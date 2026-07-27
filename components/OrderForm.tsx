@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { STORE_URL } from "@/data/shop";
 
 // vorder 디자인을 사이트 컴포넌트로 이식.
 // 제출 → /api/order (구글시트 + 메일 유지). 가격 = 채널가/대량가(10개↑) 자동할인 + 무료배송.
@@ -328,7 +329,7 @@ export default function OrderForm() {
           <p className="agree">버튼을 누르면 주문 내역이 담당자에게 전달되고, 입금 계좌가 안내됩니다.<br /><b className="pay-hi">결제 · 무통장 입금 또는 카드(네이버 쇼핑)</b></p>
           <div className="pay-alt">
             <div className="pay-alt-div"><span>또는</span></div>
-            <a className="naver-btn" href="https://naver.me/GQy5DZXQ" target="_blank" rel="noopener noreferrer">
+            <a className="naver-btn" href={STORE_URL} target="_blank" rel="noopener noreferrer">
               <span className="nb-ico">N</span><span className="nb-txt">카드 결제 · <b>네이버 쇼핑</b>에서 주문</span><span className="nb-arrow">›</span>
             </a>
             <p className="pay-alt-note">무통장 입금이 번거로우시면 네이버페이·카드로 간편하게 결제하세요.</p>

@@ -6,7 +6,7 @@
 // 색상/세트 버튼이 해당 상품으로 바로 딥링크된다.
 // (URL 미입력 시 스토어 홈으로 안전하게 연결)
 
-export const STORE_URL = "https://smartstore.naver.com/coworkers";
+export const STORE_URL = "https://smartstore.naver.com/betterus316";
 
 // 세트·낱개를 구분하지 않고, 둘 다 보이는 스토어 홈으로 모든 구매 링크를 통일한다.
 // (개별 상품 딥링크를 다시 쓰고 싶으면 buy 값만 해당 상품 URL로 바꾸면 됨)
