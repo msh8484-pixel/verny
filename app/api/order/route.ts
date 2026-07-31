@@ -6,6 +6,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 const ORDER_MAILS = ["verny260701@gmail.com", "heegeun84@gmail.com"];
 
+// 주문 접수 웹앱(구글시트 기록) URL. 환경변수 ORDER_WEBHOOK_URL 이 있으면 그걸 우선 사용하고,
+// 없으면 이 기본값을 사용한다(고객 Vercel에 env 미설정이어도 동작하도록). env 설정 시 즉시 override.
+const WEBHOOK_FALLBACK =
+  "https://script.google.com/macros/s/AKfycbw8W1TK4qs-DR1mTzkwT_gX9-14SM4-tgFt77wa59E7oV-jzb6BlPpiPhz-R-QsQo1Ghw/exec";
+
 async function sendOrderMails(body: Record<string, unknown>) {
   const subject = `[VERNY 주문] ${body.ordererName ?? ""} · ${body.total ?? ""}`;
   const detail =
@@ -37,14 +42,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "이름과 연락처는 필수입니다." }, { status: 400 });
   }
 
-  const url = process.env.ORDER_WEBHOOK_URL;
-  if (!url) {
-    // 아직 웹앱 URL 미설정 — 접수는 실패로 안내(설정 후 정상 동작)
-    return NextResponse.json(
-      { error: "주문 접수처가 아직 설정되지 않았습니다. 잠시 후 다시 시도해주세요." },
-      { status: 503 }
-    );
-  }
+  const url = process.env.ORDER_WEBHOOK_URL || WEBHOOK_FALLBACK;
 
   try {
     const res = await fetch(url, {
