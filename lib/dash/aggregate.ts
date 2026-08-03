@@ -34,7 +34,12 @@ export function aggregate(events: EventRow[], now: Date, rangeDays: number): Das
   const todayEv = events.filter((e) => dayKey(e.ts) === todayKey);
   const todayPv = todayEv.filter((e) => e.type === "pageview");
   const online = uniq(
-    events.filter((e) => now.getTime() - new Date(e.ts).getTime() < 5 * 60 * 1000).map((e) => e.vid)
+    events
+      .filter((e) => {
+        const diff = now.getTime() - new Date(e.ts).getTime();
+        return diff >= 0 && diff < 5 * 60 * 1000;
+      })
+      .map((e) => e.vid)
   ).length;
 
   // 기간 필터 (오늘=1: 오늘 0시 KST부터)
@@ -56,21 +61,36 @@ export function aggregate(events: EventRow[], now: Date, rangeDays: number): Das
     views: todayPv.filter((e) => hourOf(e.ts) === hour).length,
   }));
 
-  // 페이지별 조회수 + 평균 스크롤(세션·경로별 최댓값의 평균)
-  const scrollMax = new Map<string, number>(); // `${sid}|${path}` -> max bucket
+  // 스크롤 최댓값 (sid|path)별 — 여정은 기간 무관이므로 전체 이벤트 기준
+  const scrollMaxAll = new Map<string, number>();
+  for (const e of events) {
+    if (e.type !== "scroll" || !e.value) continue;
+    const k = `${e.sid}|${e.path}`;
+    scrollMaxAll.set(k, Math.max(scrollMaxAll.get(k) ?? 0, Number(e.value)));
+  }
+
+  // 페이지별 조회수 + 평균 스크롤 — 기간 내 데이터만, 단일 패스 그룹핑
+  const pathViews = new Map<string, number>();
+  for (const e of rangedPv) pathViews.set(e.path, (pathViews.get(e.path) ?? 0) + 1);
+  const scrollMaxRanged = new Map<string, { path: string; max: number }>();
   for (const e of ranged) {
     if (e.type !== "scroll" || !e.value) continue;
     const k = `${e.sid}|${e.path}`;
-    scrollMax.set(k, Math.max(scrollMax.get(k) ?? 0, Number(e.value)));
+    const v = Number(e.value);
+    const cur = scrollMaxRanged.get(k);
+    if (!cur || v > cur.max) scrollMaxRanged.set(k, { path: e.path, max: v });
   }
-  const pages = uniq(rangedPv.map((e) => e.path))
-    .map((path) => {
-      const depths = [...scrollMax.entries()].filter(([k]) => k.endsWith(`|${path}`)).map(([, v]) => v);
-      return {
-        path,
-        views: rangedPv.filter((e) => e.path === path).length,
-        avgScroll: depths.length ? Math.round(depths.reduce((a, b) => a + b, 0) / depths.length) : 0,
-      };
+  const depthByPath = new Map<string, { sum: number; n: number }>();
+  for (const { path, max } of scrollMaxRanged.values()) {
+    const d = depthByPath.get(path) ?? { sum: 0, n: 0 };
+    d.sum += max;
+    d.n += 1;
+    depthByPath.set(path, d);
+  }
+  const pages = [...pathViews.entries()]
+    .map(([path, views]) => {
+      const d = depthByPath.get(path);
+      return { path, views, avgScroll: d ? Math.round(d.sum / d.n) : 0 };
     })
     .sort((a, b) => b.views - a.views);
 
@@ -108,7 +128,7 @@ export function aggregate(events: EventRow[], now: Date, rangeDays: number): Das
         .map((e) =>
           e.type === "click"
             ? { label: e.value === "order_submit" ? "주문 제출" : "스토어 클릭", scroll: null }
-            : { label: e.path, scroll: scrollMax.get(`${e.sid}|${e.path}`) ?? null }
+            : { label: e.path, scroll: scrollMaxAll.get(`${e.sid}|${e.path}`) ?? null }
         ),
     }));
 

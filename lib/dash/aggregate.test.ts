@@ -71,4 +71,13 @@ describe("aggregate (KST 기준)", () => {
     const t = aggregate(events, NOW, 1);
     expect(t.pages.find((p) => p.path === "/story")).toBeUndefined();
   });
+  it("rangeDays=1이어도 여정의 스크롤은 기간 밖 데이터를 유지한다", () => {
+    const withScroll = [
+      ...events,
+      ev({ ts: "2026-08-02T05:01:00Z", type: "scroll", path: "/story", value: "50", vid: V2, sid: "cccccccc-cccc-cccc-cccc-cccccccccccc", device: "desktop" }),
+    ];
+    const t = aggregate(withScroll, NOW, 1);
+    const j = t.journeys.find((x) => x.sid === "cccccccc-cccc-cccc-cccc-cccccccccccc");
+    expect(j?.steps[0]).toEqual({ label: "/story", scroll: 50 });
+  });
 });
