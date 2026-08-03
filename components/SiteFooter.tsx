@@ -1,4 +1,5 @@
 import { SHOP, EXT } from "@/data/shop";
+import FooterSecret from "@/components/FooterSecret";
 
 export default function SiteFooter() {
   return (
@@ -39,7 +40,7 @@ export default function SiteFooter() {
       </div>
 
       <div style={{ maxWidth: 1160, margin: "44px auto 0", paddingTop: 22, borderTop: "1px solid var(--line)", fontSize: 11, color: "var(--ink-soft)" }}>
-        © {new Date().getFullYear()} BETTERUS · VERNY. All rights reserved.
+        <FooterSecret>© {new Date().getFullYear()} BETTERUS · VERNY. All rights reserved.</FooterSecret>
       </div>
     </footer>
   );
