@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { DASH_COOKIE, verifyToken } from "@/lib/dash/auth";
 import { fetchEventsSince } from "@/lib/supabase";
 import { aggregate } from "@/lib/dash/aggregate";
@@ -9,7 +10,14 @@ export const dynamic = "force-dynamic";
 
 const RANGE_DAYS: Record<string, number> = { today: 1, "7d": 7, "30d": 30 };
 
+// 고객사 Vercel(verny.co.kr)에 env 미설정이어도 대시보드가 동작하도록,
+// env가 없으면 키를 보유한 배포로 넘긴다 (주문 웹훅 폴백과 같은 패턴).
+const DASH_FALLBACK = "https://verny-beta.vercel.app/dash";
+
 export default async function DashPage({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.DASH_SECRET) {
+    redirect(DASH_FALLBACK);
+  }
   const store = await cookies();
   if (!verifyToken(store.get(DASH_COOKIE)?.value)) return <LoginForm />;
 
