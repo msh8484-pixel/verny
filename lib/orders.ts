@@ -51,6 +51,7 @@ export async function insertOrder(row: OrderRow): Promise<void> {
     method: "POST",
     headers: { ...headers, Prefer: "return=minimal" },
     body: JSON.stringify(row),
+    signal: AbortSignal.timeout(3000), // 기록 지연이 주문 응답을 붙잡지 않게 (폴백과 동일)
   });
   if (!res.ok) console.error("insertOrder 실패", res.status, await res.text().catch(() => ""));
 }
