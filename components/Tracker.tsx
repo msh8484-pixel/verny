@@ -20,25 +20,31 @@ export default function Tracker() {
   }, []);
 
   // 라우트 전환: 이전 페이지 스크롤 플러시 → 새 페이지뷰
+  // prevPath === pathname 가드는 Strict Mode 이중 실행의 중복 pageview 방지.
   useEffect(() => {
-    if (pathname.startsWith("/dash")) return;
-    if (prevPath.current && prevPath.current !== pathname) flushScroll(prevPath.current, true);
-    const external =
-      prevPath.current === null && document.referrer && !document.referrer.includes(window.location.hostname);
-    track("pageview", { path: pathname, referrer: external ? document.referrer : undefined });
+    if (prevPath.current === pathname) return;
+    if (prevPath.current && !prevPath.current.startsWith("/dash")) flushScroll(prevPath.current, true);
+    else maxScroll.current = 0;
+    if (!pathname.startsWith("/dash")) {
+      const external =
+        prevPath.current === null && document.referrer && !document.referrer.includes(window.location.hostname);
+      track("pageview", { path: pathname, referrer: external ? document.referrer : undefined });
+    }
     prevPath.current = pathname;
   }, [pathname, flushScroll]);
 
   // 스크롤 최대 도달률 추적 + 탭 이탈 시 플러시
   useEffect(() => {
     function onScroll() {
+      if (window.location.pathname.startsWith("/dash")) return;
       const doc = document.documentElement;
       const total = doc.scrollHeight - window.innerHeight;
       const pct = total <= 0 ? 100 : Math.min(100, Math.round((window.scrollY / total) * 100));
       if (pct > maxScroll.current) maxScroll.current = pct;
     }
     function onVisibility() {
-      if (document.visibilityState === "hidden" && prevPath.current) flushScroll(prevPath.current, false);
+      if (document.visibilityState === "hidden" && prevPath.current && !prevPath.current.startsWith("/dash"))
+        flushScroll(prevPath.current, false);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
