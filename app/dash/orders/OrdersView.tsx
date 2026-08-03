@@ -101,8 +101,8 @@ export default function OrdersView({ data, orders }: { data: OrdersData; orders:
     { label: "30일 매출", value: won(data.period.sales) },
     {
       label: "미처리",
-      value: `${data.period.pendingCount.toLocaleString("ko-KR")}건`,
-      warn: data.period.pendingCount > 0,
+      value: `${counts.new.toLocaleString("ko-KR")}건`,
+      warn: counts.new > 0,
     },
   ];
 
