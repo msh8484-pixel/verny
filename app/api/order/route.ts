@@ -17,6 +17,7 @@ async function recordOrder(body: Record<string, unknown>) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout(3000), // 기록 지연이 주문 응답을 붙잡지 않게
       });
     } else {
       const row = parseOrder(body);
