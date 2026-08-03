@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { STORE_URL } from "@/data/shop";
+import { track } from "@/lib/track";
 
 // vorder 디자인을 사이트 컴포넌트로 이식.
 // 제출 → /api/order (구글시트 + 메일 유지). 가격 = 채널가/대량가(10개↑) 자동할인 + 무료배송.
@@ -153,7 +154,7 @@ export default function OrderForm() {
         }),
       });
       const j = await res.json().catch(() => null);
-      if (res.ok && j?.ok) setDone({ ordNo, total });
+      if (res.ok && j?.ok) { setDone({ ordNo, total }); track("click", { value: "order_submit" }); }
       else setErr("주문 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
     } catch {
       setErr("네트워크 오류로 접수하지 못했습니다.");

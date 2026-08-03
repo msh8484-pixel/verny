@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import FloatingCta from "@/components/FloatingCta";
+import Tracker from "@/components/Tracker";
 import SmoothScroll from "@/components/fx/SmoothScroll";
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         {children}
         <FloatingCta />
+        <Tracker />
       </body>
     </html>
   );
