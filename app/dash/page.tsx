@@ -15,14 +15,16 @@ export default async function DashPage({ searchParams }: { searchParams: Promise
 
   const { range } = await searchParams;
   const rangeKey = range && RANGE_DAYS[range] ? range : "30d";
+  // 요청 시각 기준 집계 — force-dynamic 서버 컴포넌트라 렌더마다 새로 읽는 게 의도된 동작
+  const now = new Date();
   // 추이 그래프가 항상 30일이므로 조회는 항상 30일치
-  const since = new Date(Date.now() - 30 * 86400000).toISOString();
+  const since = new Date(now.getTime() - 30 * 86400000).toISOString();
 
   let error: string | null = null;
   let data = null;
   try {
     const events = await fetchEventsSince(since);
-    data = aggregate(events, new Date(), RANGE_DAYS[rangeKey]);
+    data = aggregate(events, now, RANGE_DAYS[rangeKey]);
   } catch (e) {
     error = String(e);
   }
