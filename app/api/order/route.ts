@@ -1,10 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
+import { parseOrder, insertOrder } from "@/lib/orders";
 
 // 주문 제출 → ① Google Apps Script 웹앱(구글시트 기록) + ② 알림 메일 2곳 동시 발송.
 // 웹앱 URL은 서버 환경변수 ORDER_WEBHOOK_URL 에만 둔다(클라이언트 비노출·CORS 회피).
 // 메일은 FormSubmit(무계정) 서버측 호출 — 시트 웹훅과 독립적으로 동작한다.
 
 const ORDER_MAILS = ["verny260701@gmail.com", "heegeun84@gmail.com"];
+
+// 고객사 Vercel(env 미설정)에서는 키 보유 배포로 기록 위임 — track 폴백과 동일 패턴
+const ORDER_LOG_FALLBACK = "https://verny-beta.vercel.app/api/order-log";
+
+async function recordOrder(body: Record<string, unknown>) {
+  try {
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      await fetch(ORDER_LOG_FALLBACK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(3000), // 기록 지연이 주문 응답을 붙잡지 않게
+      });
+    } else {
+      const row = parseOrder(body);
+      if (row) await insertOrder(row);
+    }
+  } catch (e) {
+    console.error("주문 DB 기록 실패", e); // 주문 접수에는 영향 없음
+  }
+}
 
 // 주문 접수 웹앱(구글시트 기록) URL. 환경변수 ORDER_WEBHOOK_URL 이 있으면 그걸 우선 사용하고,
 // 없으면 이 기본값을 사용한다(고객 Vercel에 env 미설정이어도 동작하도록). env 설정 시 즉시 override.
@@ -55,6 +77,7 @@ export async function POST(req: NextRequest) {
     }
     // 시트 기록 성공 → 알림 메일 발송(실패해도 주문 접수는 유지)
     await sendOrderMails(body);
+    await recordOrder(body);
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
