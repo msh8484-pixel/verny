@@ -5,7 +5,10 @@ export const DASH_COOKIE = "vny_dash";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
 function secret(): string {
-  return process.env.DASH_SECRET || "verny-dash-dev-secret";
+  const s = process.env.DASH_SECRET;
+  if (s) return s;
+  if (process.env.NODE_ENV === "production") throw new Error("DASH_SECRET 미설정 — 프로덕션에서 기본 시크릿 사용 불가");
+  return "verny-dash-dev-secret";
 }
 
 function mac(exp: number): string {
