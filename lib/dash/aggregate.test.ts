@@ -39,10 +39,10 @@ describe("aggregate (KST 기준)", () => {
     expect(d.daily[29]).toEqual({ date: "08.03", visitors: 2, pageviews: 4 });
     expect(d.daily[28]).toEqual({ date: "08.02", visitors: 1, pageviews: 1 });
   });
-  it("시간대: KST 14시에 3뷰, 어제 것은 미포함", () => {
+  it("시간대: KST 14시에 4뷰(05:58 UTC 포함), 15시는 0", () => {
     expect(d.hourly).toHaveLength(24);
-    expect(d.hourly[14].views).toBe(3); // 05:00~05:04 UTC = 14시 KST
-    expect(d.hourly[15]).toEqual({ hour: 15, views: 1 }); // 05:58 UTC (V2 pageview)
+    expect(d.hourly[14].views).toBe(4); // 05:00~05:58 UTC = 전부 KST 14시대
+    expect(d.hourly[15]).toEqual({ hour: 15, views: 0 });
   });
   it("페이지: 메인 스크롤 100, socks 75", () => {
     const main = d.pages.find((p) => p.path === "/");

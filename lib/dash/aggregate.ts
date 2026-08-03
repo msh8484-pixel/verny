@@ -22,11 +22,7 @@ function dayKey(ts: string | Date): string {
   return kst(ts).toISOString().slice(0, 10); // YYYY-MM-DD (KST)
 }
 function hourOf(ts: string): number {
-  const kstDate = kst(ts);
-  const hour = kstDate.getUTCHours();
-  const minutes = kstDate.getUTCMinutes();
-  // Round up to next hour if >= 58 minutes (for hour-boundary rounding)
-  return minutes >= 58 ? (hour + 1) % 24 : hour;
+  return kst(ts).getUTCHours();
 }
 function uniq<T>(arr: T[]): T[] {
   return [...new Set(arr)];
