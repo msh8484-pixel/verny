@@ -16,11 +16,12 @@ function base() {
 
 export async function insertEvent(row: TrackEvent): Promise<void> {
   const { url, headers } = base();
-  await fetch(`${url}/rest/v1/events`, {
+  const res = await fetch(`${url}/rest/v1/events`, {
     method: "POST",
     headers: { ...headers, Prefer: "return=minimal" },
     body: JSON.stringify(row),
   });
+  if (!res.ok) console.error("insertEvent 실패", res.status, await res.text().catch(() => ""));
 }
 
 export async function fetchEventsSince(sinceIso: string): Promise<EventRow[]> {

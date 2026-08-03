@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
       const ev = parseEvent(await req.json().catch(() => null));
       if (ev) await insertEvent(ev);
     }
-  } catch {
-    // 무시 — fire and forget
+  } catch (e) {
+    console.error("track 수집 실패", e); // 응답은 그대로 204 — fire and forget
   }
   return new Response(null, { status: 204 });
 }
