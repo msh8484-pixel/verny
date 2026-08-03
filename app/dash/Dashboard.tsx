@@ -2,6 +2,7 @@
 
 import type { DashData } from "@/lib/dash/aggregate";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import DashTabs from "./DashTabs";
 
 // 팔레트(다크)
 const BG = "#0b0f1a";
@@ -60,6 +61,7 @@ export default function Dashboard({ data, range }: { data: DashData; range: stri
         {/* 헤더 */}
         <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: "0.1em" }}>VERNY INSIGHT</div>
+          <DashTabs active="stats" />
           <nav style={{ display: "flex", gap: 6 }}>
             {TABS.map((t) => {
               const active = t.key === range;
