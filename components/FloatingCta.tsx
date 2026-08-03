@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { SHOP, EXT } from "@/data/shop";
 
 export default function FloatingCta() {
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
@@ -19,6 +21,8 @@ export default function FloatingCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const onDash = pathname.startsWith("/dash");
+
   function onMove(e: React.MouseEvent) {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
@@ -30,6 +34,8 @@ export default function FloatingCta() {
     my.set(0);
     if (ref.current) ref.current.style.background = "var(--navy)";
   }
+
+  if (onDash) return null;
 
   return (
     <motion.a

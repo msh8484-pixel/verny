@@ -246,21 +246,23 @@ export default function Dashboard({ data, range }: { data: DashData; range: stri
             {totalDevices === 0 ? (
               <Empty />
             ) : (
-              <div style={{ position: "relative", height: 180 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={data.devices} dataKey="count" nameKey="device" innerRadius={50} outerRadius={70} strokeWidth={0}>
-                      {data.devices.map((d, i) => (
-                        <Cell key={i} fill={d.device === "mobile" ? ACCENT : d.device === "desktop" ? SECONDARY : MUTED} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={tooltipStyle} itemStyle={{ color: TEXT }} />
-                  </PieChart>
-                </ResponsiveContainer>
-                <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", pointerEvents: "none" }}>
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: 20, fontWeight: 700 }}>{n(totalDevices)}</div>
-                    <div style={{ fontSize: 11, color: MUTED }}>총 방문</div>
+              <>
+                <div style={{ position: "relative", height: 180 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={data.devices} dataKey="count" nameKey="device" innerRadius={50} outerRadius={70} strokeWidth={0}>
+                        {data.devices.map((d, i) => (
+                          <Cell key={i} fill={d.device === "mobile" ? ACCENT : d.device === "desktop" ? SECONDARY : MUTED} />
+                        ))}
+                      </Pie>
+                      <Tooltip contentStyle={tooltipStyle} itemStyle={{ color: TEXT }} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", pointerEvents: "none" }}>
+                    <div style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: 20, fontWeight: 700 }}>{n(totalDevices)}</div>
+                      <div style={{ fontSize: 11, color: MUTED }}>총 방문</div>
+                    </div>
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 14, justifyContent: "center", marginTop: 8 }}>
@@ -268,7 +270,7 @@ export default function Dashboard({ data, range }: { data: DashData; range: stri
                     <LegendDot key={d.device} color={d.device === "mobile" ? ACCENT : d.device === "desktop" ? SECONDARY : MUTED} label={`${d.device} ${d.count}`} />
                   ))}
                 </div>
-              </div>
+              </>
             )}
           </div>
         </section>
