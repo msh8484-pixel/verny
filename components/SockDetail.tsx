@@ -108,7 +108,6 @@ export default function SockDetail() {
           </div>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 30 }}>
             <a href={SHOP.socks} {...EXT} className="btn btn-gold">Shop</a>
-            <a href="/viewer" className="btn btn-ghost">3D 보기</a>
           </div>
         </div>
       </section>
