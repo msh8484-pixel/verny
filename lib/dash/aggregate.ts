@@ -97,16 +97,15 @@ export function aggregate(events: EventRow[], now: Date, rangeDays: number): Das
   // 퍼널 (기간 내 고유 방문자 기준)
   const vids = uniq(rangedPv.map((e) => e.vid));
   const productVids = uniq(rangedPv.filter((e) => PRODUCT_PATHS.has(e.path)).map((e) => e.vid));
-  const interestVids = uniq(
-    ranged.filter((e) => (e.type === "pageview" && e.path === "/order") || (e.type === "click" && e.value === "store")).map((e) => e.vid)
-  );
-  const orderVids = uniq(ranged.filter((e) => e.type === "click" && e.value === "order_submit").map((e) => e.vid));
+  const guideVids = uniq(ranged.filter((e) => e.type === "pageview" && e.path === "/order").map((e) => e.vid));
+  // 구매는 스마트스토어로 일원화 — 스토어 클릭이 최종 전환
+  const storeVids = uniq(ranged.filter((e) => e.type === "click" && e.value === "store").map((e) => e.vid));
   const base = vids.length || 1;
   const funnel = [
     { label: "사이트 방문", count: vids.length },
     { label: "제품 열람", count: productVids.length },
-    { label: "주문 관심(주문폼·스토어)", count: interestVids.length },
-    { label: "주문 제출", count: orderVids.length },
+    { label: "구매 안내 열람", count: guideVids.length },
+    { label: "스토어 클릭", count: storeVids.length },
   ].map((f) => ({ ...f, rate: Math.round((f.count / base) * 100) }));
 
   // 방문자 여정 (최근 20세션, 최신순)

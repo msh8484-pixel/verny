@@ -27,7 +27,7 @@ export default function SiteFooter() {
           <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
             <span style={{ color: "var(--gold)", letterSpacing: "0.14em", fontSize: 11 }}>SHOP</span>
             <a href={SHOP.store} {...EXT}>네이버 스마트스토어</a>
-            <a href="/order">세금계산서·단체 문의</a>
+            <a href="/order">판매가 안내</a>
             <a href="#">인스타그램</a>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 11, lineHeight: 1.7 }}>
