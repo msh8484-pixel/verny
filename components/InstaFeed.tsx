@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
-import { EXT, INSTAGRAM_URL } from "@/data/shop";
 
 type Post = {
   src: string;
@@ -162,7 +161,7 @@ export default function InstaFeed() {
       </div>
 
       <div style={{ textAlign: "center", marginTop: 40 }}>
-        <a href={INSTAGRAM_URL} {...EXT} className="btn btn-ghost" style={{ padding: "13px 30px" }}>Follow</a>
+        <a href="#" className="btn btn-ghost" style={{ padding: "13px 30px" }}>Follow</a>
       </div>
     </section>
   );
