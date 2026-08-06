@@ -50,8 +50,9 @@ describe("aggregate (KST 기준)", () => {
     expect(main?.avgScroll).toBe(100); // 스크롤 이벤트 있는 세션만 평균
     expect(d.pages.find((p) => p.path === "/socks")?.avgScroll).toBe(75);
   });
-  it("퍼널: 방문2 → 제품열람1 → 주문관심2 → 제출1", () => {
-    expect(d.funnel.map((f) => f.count)).toEqual([2, 1, 2, 1]);
+  it("퍼널: 방문2 → 제품열람1 → 구매안내1 → 스토어클릭1", () => {
+    expect(d.funnel.map((f) => f.label)).toEqual(["사이트 방문", "제품 열람", "구매 안내 열람", "스토어 클릭"]);
+    expect(d.funnel.map((f) => f.count)).toEqual([2, 1, 1, 1]);
     expect(d.funnel[0].rate).toBe(100);
     expect(d.funnel[3].rate).toBe(50);
   });
