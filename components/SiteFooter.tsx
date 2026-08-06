@@ -1,4 +1,4 @@
-import { SHOP, EXT } from "@/data/shop";
+import { SHOP, EXT, INSTAGRAM_URL } from "@/data/shop";
 import FooterSecret from "@/components/FooterSecret";
 
 export default function SiteFooter() {
@@ -28,7 +28,7 @@ export default function SiteFooter() {
             <span style={{ color: "var(--gold)", letterSpacing: "0.14em", fontSize: 11 }}>SHOP</span>
             <a href={SHOP.store} {...EXT}>네이버 스마트스토어</a>
             <a href="/order">세금계산서·단체 문의</a>
-            <a href="#">인스타그램</a>
+            <a href={INSTAGRAM_URL} {...EXT}>인스타그램</a>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 11, lineHeight: 1.7 }}>
             <span style={{ color: "var(--gold)", letterSpacing: "0.14em", fontSize: 11 }}>COMPANY</span>
